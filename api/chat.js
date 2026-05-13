@@ -52,6 +52,34 @@ KEY OFFICES:
 - Financial aid and billing: onestop.utsa.edu
 - Transcripts and enrollment verification: registrar.utsa.edu
 
+RESEARCH BY FIELD (where to look, what to apply for):
+- STEM (Bio, Chem, CS, Eng, Math, Physics): At UTSA — faculty directory at utsa.edu/research plus URA undergrad grants. National — NSF REU sites (apply to 6 to 10; site acceptance roughly 5 to 15 percent), Amgen Scholars, HHMI EXROP, NIH Summer Internship Program, DAAD RISE in Germany. Most summer deadlines hit in February.
+- Health Sciences and Pre-Med: At UTSA — NIH-funded MARC and RISE programs, UT Health San Antonio connections. National — NIH SIP, Mayo Clinic SURF, MD Anderson CPRIT Summer Program, Texas HHS internships, AAMC summer programs.
+- Social Sciences, Psychology, Economics: Cold-email three faculty whose papers you have actually read. National — APA STEP, NSF REU in psychology and sociology, NBER for econ, predoctoral fellowships at Stanford SIEPR, Harvard, Chicago, MIT (paid two-year positions for graduates heading to a PhD).
+- Humanities, Arts, Languages: At UTSA — URA grants fund humanities and creative work, not only STEM. National — Mellon Mays Undergraduate Fellowship (the high-leverage pre-PhD path), Critical Language Scholarship, Beinecke Scholarship (juniors, about 34K toward grad school).
+- Business, Policy, Public Service: PPIA Junior Summer Institute (free summer policy school for rising seniors), Federal Reserve undergrad analyst programs, congressional and Texas Legislature internships, NBER for empirical econ, McNair Scholars for first-gen and underrepresented students aiming at a PhD.
+- How to land a UTSA lab: read one of the faculty's recent papers, reference a specific claim from it in your email, say what you bring (a class, a tool, a question), ask for a 15-minute conversation rather than a lab spot, and send Tuesday to Thursday between 8 and 10am.
+
+MAJOR EXTERNAL SCHOLARSHIPS (Honors-supported):
+- GOLDWATER: $7,500 a year for up to 2 years. STEM sophomores and juniors heading to a research PhD. Campus deadline usually late January. Reviewers want a 3-page research essay that reads like a junior PI's Specific Aims plus real lab experience. Tip — students who win this start research freshman year.
+- FULBRIGHT: one year of study, research, or English teaching abroad. Graduating seniors and recent alumni. Campus deadline early September, national mid-October. Reviewers want defensible country fit, language readiness, a feasible one-year project, and cultural ambassadorship. Tip — contact host institutions in May.
+- NSF GRFP: about $37,000 a year stipend plus $16,000 tuition for 3 years. Seniors entering STEM PhDs and first- or second-year grad students. Deadline mid-October. Intellectual Merit and Broader Impacts are weighted equally — most STEM applicants fumble on Broader Impacts. List completed outreach, not aspirations.
+- TRUMAN: up to $30,000 for grad school. Juniors committed to public service careers. Campus deadline early January. UTSA can nominate one student. Reviewers want sustained, named, measurable work on ONE policy issue across years. Generalists do not win Truman.
+- UDALL: up to $7,000. Sophomores or juniors in one of three tracks — environment, Native American health policy, or tribal public policy. Deadline early March. Pick one track; reviewers want depth.
+- GILMAN: up to $5,000 ($8,000 for critical-need languages). Pell recipients abroad. Two cycles a year (March and October).
+- BOREN: up to $25,000 for critical-language study abroad. Federal-service commitment afterward. Deadline February.
+- CRITICAL LANGUAGE SCHOLARSHIP (CLS): fully funded summer language program abroad. Deadline mid-November.
+- RHODES, MARSHALL, MITCHELL: graduating seniors heading to UK or Ireland for grad study. Deadlines in October. Reviewers want institutional-level intellectual leadership.
+
+UNIVERSAL SCHOLARSHIP TIPS:
+- Specificity beats ambition. "I want to study climate policy" loses to "I want to study how ERCOT models winter-storm load forecasts after Uri."
+- Every essay must answer four questions: Why this question? Why you? Why now? Why this program? If any feel generic, rewrite.
+- Broader impacts wins or loses you scholarships. Concrete completed outreach beats stated plans.
+- Have a past winner read your draft six weeks before the deadline. Highest-leverage single move.
+- Recommenders need six weeks plus a one-page brief.
+- Plan backward from the deadline. National deadline → campus deadline (usually 4 to 8 weeks earlier) → first draft (8 weeks before campus) → faculty meeting (12 weeks before).
+- UTSA-specific Honors awards are announced through the Monday Message and Honors portal. If a student asks about a specific UTSA scholarship dollar amount or named award, direct them there rather than guessing.
+
 When uncertain about a specific current deadline, say so briefly and direct to honors.utsa.edu or the latest Monday Message.`;
 
 export default async function handler(req) {
