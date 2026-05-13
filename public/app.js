@@ -59,6 +59,154 @@ function closeChat(){
 window.openChat = openChat;
 window.closeChat = closeChat;
 
+/* ===== PROFILE (year + major) ===== */
+const PROFILE_KEY = 'oracle:profile';
+const PROFILE_YEARS = [
+  { value: 'freshman',  label: 'Freshman' },
+  { value: 'sophomore', label: 'Sophomore' },
+  { value: 'junior',    label: 'Junior' },
+  { value: 'senior',    label: 'Senior' },
+  { value: 'grad',      label: 'Grad student' },
+];
+const VALID_YEARS = new Set(PROFILE_YEARS.map(y => y.value));
+
+function loadProfile(){
+  try {
+    const raw = localStorage.getItem(PROFILE_KEY);
+    if (!raw) return null;
+    const p = JSON.parse(raw);
+    const year  = VALID_YEARS.has(p.year) ? p.year : '';
+    const major = (typeof p.major === 'string') ? p.major.slice(0, 80) : '';
+    if (!year && !major) return null;
+    return { year, major };
+  } catch { return null; }
+}
+function saveProfile(p){
+  if (!p || (!p.year && !p.major)) {
+    localStorage.removeItem(PROFILE_KEY);
+    return;
+  }
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
+}
+function getProfileLabel(p){
+  if (!p) return '';
+  const yr = PROFILE_YEARS.find(y => y.value === p.year);
+  const yrLabel = yr ? yr.label : '';
+  if (yrLabel && p.major) return `${yrLabel} · ${p.major}`;
+  return yrLabel || p.major || '';
+}
+function getCurrentProfile(){ return loadProfile(); }
+window.getCurrentProfile = getCurrentProfile;
+
+function refreshProfileButton(){
+  const btn = document.getElementById('profile-btn');
+  if (!btn) return;
+  const p = loadProfile();
+  const label = getProfileLabel(p);
+  if (label) {
+    btn.classList.add('is-set');
+    btn.innerHTML = `<span class="pb-icon">👤</span><span>${escapeHtml(label)}</span>`;
+    btn.title = 'Edit your year and major';
+  } else {
+    btn.classList.remove('is-set');
+    btn.innerHTML = `<span class="pb-icon">👤</span><span>Set year &amp; major</span>`;
+    btn.title = 'Tell the Oracle your year and major for better answers';
+  }
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function ensureProfileModal(){
+  if (document.getElementById('profile-modal')) return;
+  const yearOptions = ['<option value="">Prefer not to say</option>']
+    .concat(PROFILE_YEARS.map(y => `<option value="${y.value}">${y.label}</option>`))
+    .join('');
+  const wrap = document.createElement('div');
+  wrap.id = 'profile-modal';
+  wrap.className = 'modal-backdrop';
+  wrap.innerHTML = `
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
+      <h3 id="profile-modal-title">Personalize the Oracle</h3>
+      <p class="modal-sub">Tell the chat your year and major and answers get sharper — scholarships you can still apply to, REUs that match your level, deadlines that aren't past yet. Stored only in this browser.</p>
+      <div class="modal-field">
+        <label for="pm-year">Year</label>
+        <select id="pm-year">${yearOptions}</select>
+      </div>
+      <div class="modal-field">
+        <label for="pm-major">Major or field of interest</label>
+        <input id="pm-major" type="text" maxlength="80" placeholder="e.g. Computer Science, Biology, Psychology, Policy" />
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn danger"   type="button" id="pm-clear">Clear</button>
+        <button class="modal-btn secondary" type="button" id="pm-cancel">Cancel</button>
+        <button class="modal-btn primary"   type="button" id="pm-save">Save</button>
+      </div>
+      <p class="modal-footnote">Lives in your browser (localStorage). Sent only on chat requests to make answers more relevant. Clear it anytime.</p>
+    </div>
+  `;
+  document.body.appendChild(wrap);
+
+  // dismiss handlers
+  wrap.addEventListener('click', (e) => { if (e.target === wrap) closeProfileModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && wrap.classList.contains('active')) closeProfileModal();
+  });
+  document.getElementById('pm-cancel').addEventListener('click', closeProfileModal);
+  document.getElementById('pm-clear').addEventListener('click', () => {
+    saveProfile(null);
+    refreshProfileButton();
+    closeProfileModal();
+  });
+  document.getElementById('pm-save').addEventListener('click', () => {
+    const year = document.getElementById('pm-year').value;
+    const major = document.getElementById('pm-major').value.trim().slice(0, 80);
+    saveProfile({ year: VALID_YEARS.has(year) ? year : '', major });
+    refreshProfileButton();
+    closeProfileModal();
+  });
+}
+
+function openProfileModal(){
+  ensureProfileModal();
+  const p = loadProfile() || { year: '', major: '' };
+  document.getElementById('pm-year').value  = p.year || '';
+  document.getElementById('pm-major').value = p.major || '';
+  document.getElementById('profile-modal').classList.add('active');
+  setTimeout(() => { document.getElementById('pm-year').focus(); }, 50);
+}
+function closeProfileModal(){
+  const m = document.getElementById('profile-modal');
+  if (m) m.classList.remove('active');
+}
+window.openProfileModal = openProfileModal;
+
+function injectProfileUI(){
+  const header = document.querySelector('.chat-header');
+  if (!header) return;
+  if (document.getElementById('profile-btn')) { refreshProfileButton(); return; }
+  const btn = document.createElement('button');
+  btn.id = 'profile-btn';
+  btn.type = 'button';
+  btn.className = 'profile-btn';
+  btn.onclick = openProfileModal;
+  const liveDot = header.querySelector('.live-dot');
+  if (liveDot) header.insertBefore(btn, liveDot);
+  else header.appendChild(btn);
+  refreshProfileButton();
+
+  // welcome-panel hint
+  const welcome = document.getElementById('chat-welcome');
+  if (welcome && !welcome.querySelector('.personalize-hint')) {
+    const hint = document.createElement('button');
+    hint.type = 'button';
+    hint.className = 'personalize-hint';
+    hint.textContent = '👤 Personalize for your year and major →';
+    hint.onclick = openProfileModal;
+    welcome.appendChild(hint);
+  }
+}
+
 /* ===== CHAT LOGIC ===== */
 const oracle = (() => {
   let history = [];
@@ -138,10 +286,11 @@ const oracle = (() => {
 
     let bub = null;
     try {
+      const profile = (typeof getCurrentProfile === 'function') ? getCurrentProfile() : null;
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history })
+        body: JSON.stringify({ messages: history, profile })
       });
       removeTyping();
       if (!res.ok) {
@@ -220,6 +369,7 @@ function init(){
   initIcons();
   initStars();
   initReveal();
+  injectProfileUI();
 }
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);

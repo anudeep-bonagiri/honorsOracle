@@ -121,6 +121,7 @@ When uncertain about a specific current deadline, say so briefly and direct to h
 const MAX_MSG_CHARS = 2000;
 const MAX_HISTORY = 24;
 const ALLOWED_ROLES = new Set(['user', 'assistant']);
+const ALLOWED_YEARS = new Set(['freshman', 'sophomore', 'junior', 'senior', 'grad']);
 
 function sanitize(messages) {
   if (!Array.isArray(messages)) return [];
@@ -134,6 +135,23 @@ function sanitize(messages) {
     cleaned.push({ role: m.role, content });
   }
   return cleaned.slice(-MAX_HISTORY);
+}
+
+function sanitizeProfile(p) {
+  if (!p || typeof p !== 'object') return null;
+  const yearRaw = (p.year || '').toString().toLowerCase().trim();
+  const year = ALLOWED_YEARS.has(yearRaw) ? yearRaw : '';
+  const major = (p.major || '').toString().replace(/[\r\n\t]/g, ' ').trim().slice(0, 80);
+  if (!year && !major) return null;
+  return { year, major };
+}
+
+function profileSuffix(p) {
+  if (!p) return '';
+  const parts = [];
+  if (p.year)  parts.push(`Year: ${p.year}`);
+  if (p.major) parts.push(`Major / field of interest: ${p.major}`);
+  return `\n\nSTUDENT PROFILE (soft context — use to tailor concrete recommendations like scholarship eligibility, REU fit, and timeline advice; do not over-fit, the student may ask about anything):\n${parts.join('\n')}`;
 }
 
 export default async function handler(req) {
@@ -171,6 +189,21 @@ export default async function handler(req) {
       });
     }
 
+    const profile = sanitizeProfile(body.profile);
+    const systemPrompt = SYSTEM + profileSuffix(profile);
+
+    // Anonymous question logging — lands in Vercel function logs.
+    // No PII beyond optional year+major the student opted into.
+    try {
+      const lastUser = messages[messages.length - 1].content.slice(0, 500);
+      console.log('[oracle:q] ' + JSON.stringify({
+        ts: new Date().toISOString(),
+        q: lastUser,
+        profile,
+        turn: messages.length
+      }));
+    } catch {}
+
     const apiKey = process.env.GROQ_API_KEY || process.env.universal;
     if (!apiKey) {
       return new Response(JSON.stringify({ error: 'Server missing GROQ_API_KEY' }), {
@@ -187,7 +220,7 @@ export default async function handler(req) {
       },
       body: JSON.stringify({
         model: 'llama-3.3-70b-versatile',
-        messages: [{ role: 'system', content: SYSTEM }, ...messages],
+        messages: [{ role: 'system', content: systemPrompt }, ...messages],
         stream: true,
         max_tokens: 700,
         temperature: 0.4
