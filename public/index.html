@@ -327,18 +327,6 @@ footer span { color:var(--gold); }
 .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
-/* ===== TEAM AVATAR ===== */
-.team-avatar {
-  width:68px; height:68px; border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:var(--navy);
-  display:flex; align-items:center; justify-content:center;
-  font-size:23px; font-weight:700; font-family:'Georgia',serif;
-  margin:0 auto 16px;
-  box-shadow:0 6px 20px rgba(240,171,0,0.25);
-  letter-spacing:0.5px;
-}
-
 /* ===== TOP NAV ANCHORS ===== */
 .nav-anchors {
   display:flex; align-items:center; gap:2px;
@@ -378,7 +366,6 @@ footer span { color:var(--gold); }
       <button class="nav-anchor" data-section="research" type="button">Research</button>
       <button class="nav-anchor" data-section="scholarships" type="button">Scholarships</button>
       <button class="nav-anchor" data-section="vision" type="button">Vision</button>
-      <button class="nav-anchor" data-section="team" type="button">Team</button>
       <button class="nav-anchor" data-section="playbook" type="button">Playbook</button>
     </div>
     <span class="nav-badge">UTSA Honors</span>
@@ -656,42 +643,6 @@ footer span { color:var(--gold); }
     </div>
   </section>
 
-  <!-- ===== TEAM ===== -->
-  <div style="background:rgba(255,255,255,0.025);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-    <section id="team">
-      <div class="section-label reveal">Founding Team</div>
-      <h2 class="section-title reveal">The team <span style="color:var(--gold)">building it.</span></h2>
-      <p class="section-sub reveal">Four UTSA Honors CS undergrads who got tired of watching classmates miss scholarship deadlines and built the thing nobody else was building.</p>
-      <div class="problem-grid">
-
-        <div class="problem-card reveal" style="text-align:center;">
-          <div class="team-avatar">AB</div>
-          <div class="p-title" style="text-align:center;">Anudeep Bonagiri</div>
-          <p class="p-text" style="text-align:center;"><span style="color:var(--gold);font-weight:700;">Founder · Product & Engineering</span><br>Sophomore · CS · UTSA Honors. Built the Oracle end-to-end. Also founded Cruze (swarm-AI traffic SaaS).</p>
-        </div>
-
-        <div class="problem-card reveal" style="text-align:center;">
-          <div class="team-avatar">RG</div>
-          <div class="p-title" style="text-align:center;">Ryan G.</div>
-          <p class="p-text" style="text-align:center;"><span style="color:var(--gold);font-weight:700;">Founding Engineer</span><br>Sophomore · CS · UTSA Honors. Backend systems, infra, and knowledge-base pipelines.</p>
-        </div>
-
-        <div class="problem-card reveal" style="text-align:center;">
-          <div class="team-avatar">M</div>
-          <div class="p-title" style="text-align:center;">Mathuram</div>
-          <p class="p-text" style="text-align:center;"><span style="color:var(--gold);font-weight:700;">Founding Research</span><br>Freshman · CS · UTSA Honors. Knowledge curation, scholarship taxonomy, content accuracy.</p>
-        </div>
-
-        <div class="problem-card reveal" style="text-align:center;">
-          <div class="team-avatar">SS</div>
-          <div class="p-title" style="text-align:center;">Shrithik Senthilkumar</div>
-          <p class="p-text" style="text-align:center;"><span style="color:var(--gold);font-weight:700;">Founding Design & Engineering</span><br>Freshman · CS · UTSA Honors. UI, UX, and the frontend systems students actually touch.</p>
-        </div>
-
-      </div>
-    </section>
-  </div>
-
   <!-- ===== PLAYBOOK ===== -->
   <section id="playbook">
     <div class="section-label reveal">The Playbook</div>
@@ -875,7 +826,7 @@ function closeChat(){
     });
   });
 
-  const ids=['research','scholarships','vision','team','playbook'];
+  const ids=['research','scholarships','vision','playbook'];
   const sections=ids.map(id=>document.getElementById(id)).filter(Boolean);
 
   if('IntersectionObserver' in window){
