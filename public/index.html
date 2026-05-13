@@ -319,6 +319,51 @@ footer span { color:var(--gold); }
 
 .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ===== FLOATING NAV ===== */
+.float-nav {
+  position:fixed;
+  bottom:max(18px, env(safe-area-inset-bottom));
+  left:50%;
+  transform:translateX(-50%) translateY(28px);
+  opacity:0; pointer-events:none;
+  z-index:60;
+  display:flex; gap:4px; padding:5px;
+  background:rgba(12,35,64,0.84);
+  backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(240,171,0,0.28);
+  border-radius:999px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.04);
+  max-width:calc(100vw - 24px);
+  overflow-x:auto;
+  scrollbar-width:none;
+  transition:opacity .35s ease, transform .35s ease;
+}
+.float-nav::-webkit-scrollbar { display:none; }
+.float-nav.visible { opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0); }
+.fnav-btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px;
+  background:transparent; border:none; color:var(--cream);
+  font-family:'Georgia',serif; font-size:13px; letter-spacing:.2px;
+  padding:0 16px; border-radius:999px; cursor:pointer;
+  white-space:nowrap; transition:background .18s ease, color .18s ease; flex-shrink:0;
+}
+.fnav-btn:hover { background:rgba(240,171,0,0.12); color:var(--gold); }
+.fnav-btn:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+.fnav-btn[aria-current="true"] { background:rgba(240,171,0,0.2); color:var(--gold); }
+.fnav-btn.cta { background:var(--gold); color:var(--navy); font-weight:700; }
+.fnav-btn.cta:hover { background:var(--gold2); color:var(--navy); }
+.fnav-btn .fnav-short { display:none; }
+@media (max-width:560px) {
+  .fnav-btn .fnav-long { display:none; }
+  .fnav-btn .fnav-short { display:inline; }
+  .fnav-btn { font-size:12px; padding:0 13px; min-height:42px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-nav { transition:opacity .01s; transform:translateX(-50%) translateY(0); }
+  .float-nav:not(.visible) { opacity:0; }
+}
 </style>
 </head>
 <body>
@@ -406,7 +451,7 @@ footer span { color:var(--gold); }
 
   <!-- WHY STUDENTS NEED IT -->
   <div class="testimonials-wrap">
-    <section>
+    <section id="why">
       <div class="section-label reveal">Why It Matters</div>
       <h2 class="section-title reveal">Why students <span style="color:var(--gold)">need this.</span></h2>
       <p class="section-sub reveal">What a 30-second answer changes about your week, your record, and your shot at the things that matter.</p>
@@ -636,6 +681,22 @@ footer span { color:var(--gold); }
 </div><!-- /chat-view -->
 
 
+<!-- ===== FLOATING SECTION NAV ===== -->
+<nav class="float-nav" id="floatNav" aria-label="Page sections">
+  <button class="fnav-btn" data-section="how" type="button">
+    <span class="fnav-long">How It Works</span><span class="fnav-short">How</span>
+  </button>
+  <button class="fnav-btn" data-section="research" type="button">Research</button>
+  <button class="fnav-btn" data-section="scholarships" type="button">
+    <span class="fnav-long">Scholarships</span><span class="fnav-short">Schol.</span>
+  </button>
+  <button class="fnav-btn" data-section="why" type="button">
+    <span class="fnav-long">Why It Matters</span><span class="fnav-short">Why</span>
+  </button>
+  <button class="fnav-btn cta" id="fnavAsk" type="button" aria-label="Open the Honors Oracle chat">Ask Oracle</button>
+</nav>
+
+
 <script>
 /* ===== STARS ===== */
 (function(){
@@ -680,6 +741,56 @@ function closeChat(){
   document.getElementById('chat-view').classList.remove('active');
   document.body.style.overflow='';
 }
+
+/* ===== FLOATING NAV ===== */
+(function(){
+  const nav=document.getElementById('floatNav');
+  if(!nav) return;
+  const buttons=nav.querySelectorAll('.fnav-btn[data-section]');
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  buttons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const id=btn.dataset.section;
+      const el=document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:reduced?'auto':'smooth', block:'start'});
+    });
+  });
+  const askBtn=document.getElementById('fnavAsk');
+  if(askBtn) askBtn.addEventListener('click', openChat);
+
+  // Show after the hero has scrolled past
+  let ticking=false;
+  function onScroll(){
+    if(ticking) return;
+    ticking=true;
+    requestAnimationFrame(()=>{
+      if(window.scrollY>240) nav.classList.add('visible');
+      else nav.classList.remove('visible');
+      ticking=false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Active section highlighting
+  const ids=['how','research','scholarships','why'];
+  const sections=ids.map(id=>document.getElementById(id)).filter(Boolean);
+  const setActive=(id)=>{
+    buttons.forEach(b=>{
+      if(b.dataset.section===id) b.setAttribute('aria-current','true');
+      else b.removeAttribute('aria-current');
+    });
+  };
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((entries)=>{
+      const visible=entries.filter(e=>e.isIntersecting)
+                           .sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
+      if(visible.length) setActive(visible[0].target.id);
+    }, {rootMargin:'-35% 0px -55% 0px', threshold:[0,0.1,0.5,1]});
+    sections.forEach(s=>io.observe(s));
+  }
+})();
 
 /* ===== CHAT LOGIC ===== */
 let history=[],busy=false;
