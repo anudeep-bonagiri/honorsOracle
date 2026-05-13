@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Honors Oracle — UTSA Honors College</title>
-<meta name="description" content="The 24/7 AI navigator for UTSA Honors College students. Instant answers on ELA, thesis, scholarships, and more.">
+<meta name="description" content="A chat that knows UTSA Honors College policy. Built by a student because the handbook is forty pages.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
-<meta property="og:title" content="The Honors Oracle — UTSA Honors College">
-<meta property="og:description" content="The 24/7 AI navigator for Honors students. Instant answers on ELA, thesis, scholarships, and research opportunities. Built for UTSA, designed for every Honors College in America.">
+<meta property="og:title" content="Honors Oracle — UTSA Honors">
+<meta property="og:description" content="A chat that knows UTSA Honors College policy. Built solo because the handbook is forty pages and the office closes at five.">
 <meta property="og:url" content="https://utsa-student-oracle.vercel.app/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Honors Oracle — UTSA Honors College">
-<meta name="twitter:description" content="The 24/7 AI navigator for Honors students. Instant answers on ELA, thesis, scholarships, and research opportunities.">
+<meta name="twitter:title" content="Honors Oracle — UTSA Honors">
+<meta name="twitter:description" content="A chat that knows UTSA Honors College policy. Built by a sophomore because the handbook is forty pages.">
 <style>
 :root {
   --navy:   #0C2340;
@@ -365,7 +365,6 @@ footer span { color:var(--gold); }
     <div class="nav-anchors" role="navigation" aria-label="Page sections">
       <button class="nav-anchor" data-section="research" type="button">Research</button>
       <button class="nav-anchor" data-section="scholarships" type="button">Scholarships</button>
-      <button class="nav-anchor" data-section="vision" type="button">Vision</button>
       <button class="nav-anchor" data-section="playbook" type="button">Playbook</button>
     </div>
     <span class="nav-badge">UTSA Honors</span>
@@ -374,19 +373,13 @@ footer span { color:var(--gold); }
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-eyebrow">UTSA Honors College · AI Navigator</div>
+    <div class="hero-eyebrow">UTSA Honors · A side project</div>
     <div class="hero-owl">🦉</div>
-    <h1>Your questions,<br><span>answered instantly.</span></h1>
-    <p class="hero-sub">The Honors Oracle is a 24/7 AI navigator built specifically for UTSA Honors College students. No waiting. No office hours. No runaround.</p>
+    <h1>The Honors handbook,<br><span>that talks back.</span></h1>
+    <p class="hero-sub">A chatbot trained on UTSA Honors policy, scholarship rules, and ELA mechanics. I built it because I kept losing afternoons to PDFs.</p>
     <div class="hero-actions">
-      <button class="btn-primary" onclick="openChat()">Ask the Oracle</button>
-      <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView()">See how it works</button>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Always Available</div></div>
-      <div class="stat"><div class="stat-num">&lt;3s</div><div class="stat-label">Average Response</div></div>
-      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Honors-Specific</div></div>
-      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">For All Students</div></div>
+      <button class="btn-primary" onclick="openChat()">Ask it something</button>
+      <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView()">How it works</button>
     </div>
   </div>
 
@@ -394,23 +387,23 @@ footer span { color:var(--gold); }
   <div style="background:rgba(255,255,255,0.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
     <section>
       <div class="section-label reveal">The Problem</div>
-      <h2 class="section-title reveal">Students deserve answers <span style="color:var(--gold)">right now.</span></h2>
-      <p class="section-sub reveal">The information exists. It is buried in PDFs, lost in Canvas, and locked behind 9-to-5 office hours. That gap costs students deadlines, scholarships, and peace of mind.</p>
+      <h2 class="section-title reveal">The info exists. <span style="color:var(--gold)">Nobody can find it.</span></h2>
+      <p class="section-sub reveal">The Honors handbook is dense. Canvas announcements get buried. Office hours are 9–5. By the time you find what you need, the deadline already passed.</p>
       <div class="problem-grid">
         <div class="problem-card reveal">
           <span class="p-icon">🌙</span>
-          <div class="p-title">Midnight Deadlines</div>
-          <p class="p-text">ELA budget due tomorrow. Thesis proposal due Friday. Office closed. A student with no connections has no one to call. The Oracle is always on.</p>
+          <div class="p-title">The deadlines that hit at 11pm</div>
+          <p class="p-text">Most of the deadlines I've almost missed were on a Sunday night or a random Tuesday at 11pm. The Honors office isn't open then. Now there's something to ask.</p>
         </div>
         <div class="problem-card reveal">
           <span class="p-icon">🗂</span>
-          <div class="p-title">Fragmented Information</div>
-          <p class="p-text">Answers are scattered across a 40-page handbook, buried Canvas announcements, and three separate department websites. Students should not need to be detectives.</p>
+          <div class="p-title">The handbook is forty pages</div>
+          <p class="p-text">Plus Canvas announcements. Plus three department websites that sometimes disagree with each other. The chat reads the documents so you don't have to.</p>
         </div>
         <div class="problem-card reveal">
           <span class="p-icon">🎓</span>
-          <div class="p-title">The Hidden Curriculum</div>
-          <p class="p-text">Students with family connections already know how the system works. First-generation students learn it the hard way. The Oracle levels that playing field.</p>
+          <div class="p-title">Stuff your advisor assumes you know</div>
+          <p class="p-text">If your parents went to college in the US, you probably already know how things like priority registration or ELA budget approvals are supposed to work. If they didn't, you learn this stuff by getting burned by it.</p>
         </div>
       </div>
     </section>
@@ -419,23 +412,23 @@ footer span { color:var(--gold); }
   <!-- HOW IT WORKS -->
   <section id="how">
     <div class="section-label reveal">How It Works</div>
-    <h2 class="section-title reveal">Three steps to your answer</h2>
-    <p class="section-sub reveal">No signup required. No forms. No waiting room. Just ask.</p>
+    <h2 class="section-title reveal">How it works</h2>
+    <p class="section-sub reveal">No login, no form. Open the chat, type the question.</p>
     <div class="steps">
       <div class="step reveal">
         <div class="step-num">1</div>
-        <h3>Ask anything</h3>
-        <p>Type your question in plain language. Deadlines, ELA requirements, thesis steps, scholarship eligibility. Whatever is on your mind.</p>
+        <h3>Type the question</h3>
+        <p>No special phrasing needed. ELA, thesis, scholarships, that form your advisor mentioned that you forgot to ask about.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">2</div>
-        <h3>Get a direct answer</h3>
-        <p>The Oracle pulls from a curated knowledge base of Honors College policies, guidelines, and procedures. No fluff, no runaround.</p>
+        <h3>Get an answer</h3>
+        <p>It pulls from a knowledge base of Honors College policy and procedures, then answers. Where it's not sure, it says so and points you to the right office.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">3</div>
-        <h3>Follow the thread</h3>
-        <p>Related follow-up questions surface automatically so you can keep exploring without starting over. Like having an advisor who actually has time for you.</p>
+        <h3>Follow up</h3>
+        <p>Related follow-up questions appear after each answer. Click one to keep going.</p>
       </div>
     </div>
   </section>
@@ -444,44 +437,44 @@ footer span { color:var(--gold); }
   <div class="testimonials-wrap">
     <section id="why">
       <div class="section-label reveal">Why It Matters</div>
-      <h2 class="section-title reveal">Why students <span style="color:var(--gold)">need this.</span></h2>
-      <p class="section-sub reveal">What a 30-second answer changes about your week, your record, and your shot at the things that matter.</p>
+      <h2 class="section-title reveal">Why this <span style="color:var(--gold)">matters.</span></h2>
+      <p class="section-sub reveal">A few things that change when there's a chat to ask at 11pm on a Sunday.</p>
       <div class="problem-grid">
 
         <div class="problem-card reveal">
           <span class="p-icon">⏱</span>
-          <div class="p-title">Time back in your week</div>
-          <p class="p-text">The hour you'd have spent digging through PDFs and three department websites becomes 30 seconds. That hour goes back to coursework, research, or sleep.</p>
+          <div class="p-title">Stop reading the handbook for the eighth time</div>
+          <p class="p-text">Ask once. Get the answer. Move on with your day. The handbook isn't going anywhere, but you don't have to keep grepping it.</p>
         </div>
 
         <div class="problem-card reveal">
           <span class="p-icon">🔭</span>
-          <div class="p-title">Opportunities you'd never have heard of</div>
-          <p class="p-text">Goldwater opens for sophomores. Mellon Mays funds humanities pre-PhDs. Boren pays you to learn critical languages. The Oracle surfaces every program that fits you, not just the ones your advisor remembered to mention.</p>
+          <div class="p-title">Programs nobody bothered to mention</div>
+          <p class="p-text">Goldwater is open to sophomores. Most people hear about it junior year, after the prep window already closed. There are dozens of these — the chat surfaces the ones that fit your year and major.</p>
         </div>
 
         <div class="problem-card reveal">
           <span class="p-icon">✅</span>
-          <div class="p-title">Confidence at decision moments</div>
-          <p class="p-text">No more guessing whether the form wants three documents or four. Ask, get the exact answer, submit. Stop refreshing your inbox waiting for an advisor reply that lands three days later.</p>
+          <div class="p-title">Less waiting on email</div>
+          <p class="p-text">The form wants three docs or four? Ask, submit, done. Beats waiting three days for a reply at the wrong time of night.</p>
         </div>
 
         <div class="problem-card reveal">
           <span class="p-icon">⚖️</span>
-          <div class="p-title">Equal footing on the hidden game</div>
-          <p class="p-text">Insider knowledge — application timing, what reviewers actually want, what "good" looks like — available to every Honors student. Not just the ones with academic connections at home.</p>
+          <div class="p-title">The stuff people with academic networks already know</div>
+          <p class="p-text">When to apply, what reviewers actually weight, what a strong essay looks like. At schools with deep academic networks this is folklore everyone picks up. Less so here. Trying to close that gap.</p>
         </div>
 
         <div class="problem-card reveal">
           <span class="p-icon">🎯</span>
-          <div class="p-title">Sharper questions for office hours</div>
-          <p class="p-text">Get oriented on a topic in 30 seconds, then walk into office hours with the questions that actually need a human. Your advisor's time goes further. So does yours.</p>
+          <div class="p-title">Better questions for office hours</div>
+          <p class="p-text">Get oriented before you walk in, so you ask the things your advisor can actually help with. Not the things a chatbot could've answered in ten seconds.</p>
         </div>
 
         <div class="problem-card reveal">
           <span class="p-icon">🦉</span>
-          <div class="p-title">Built for Honors, not generic AI</div>
-          <p class="p-text">Grounded in UTSA Honors College policies and procedures. Doesn't fabricate deadlines or invent program names. Tells you when it isn't sure and points you to the right office.</p>
+          <div class="p-title">Will say "I don't know"</div>
+          <p class="p-text">Grounded in UTSA Honors policy, not the public internet. When it's unsure, it points you at the right office instead of making up a deadline.</p>
         </div>
 
       </div>
@@ -595,59 +588,25 @@ footer span { color:var(--gold); }
 
       <div class="problem-card reveal" style="border-color:rgba(240,171,0,0.45);background:rgba(240,171,0,0.06);">
         <span class="p-icon">🎯</span>
-        <div class="p-title">What reviewers actually care about — across every major scholarship</div>
+        <div class="p-title">A few things reviewers tend to care about</div>
         <p class="p-text" style="line-height:1.9;">
-          <strong>1. Specificity beats ambition.</strong> "I want to study climate policy" loses to "I want to study how ERCOT models winter-storm load forecasts after Uri."<br>
-          <strong>2. Every essay must answer four questions:</strong> Why this question? Why you? Why now? Why this program? If any feels generic, rewrite.<br>
-          <strong>3. Broader impacts isn't an afterthought.</strong> Concrete, named, completed outreach beats "I plan to mentor underrepresented students."<br>
-          <strong>4. Have a past winner read your draft.</strong> Single highest-leverage move: someone who already won the same scholarship reviewing your essay six weeks before the deadline.<br>
-          <strong>5. Recommenders need six weeks.</strong> Ask in writing with a one-page brief: your goals, the prompt, the deadline, and the specific things you'd want them to mention.<br>
-          <strong>6. Plan backward from the deadline.</strong> National deadline → campus deadline (usually 4–8 weeks earlier) → first draft (8 weeks before campus) → faculty meeting (12 weeks before). Most students miss because they didn't know the campus deadline existed.
+          Specific research questions read better than broad interest areas. "Climate policy" is vague. "How ERCOT models winter-storm load forecasts after Uri" is something a reviewer can imagine you actually working on.<br><br>
+          Every essay quietly answers four questions: why this topic, why you specifically, why now, and why this program. If your draft skips one, the reviewer notices.<br><br>
+          Broader impacts is not filler. Concrete things you have already done (a workshop you ran, a class you TA'd, students you mentored) beat anything starting with "I plan to."<br><br>
+          The single best thing you can do six weeks out is have someone who already won the same scholarship read your essay. Almost nobody does this.<br><br>
+          Recommenders need a one-page brief: the prompt, the deadline, what you want them to mention. Send it six weeks out. They will quietly resent two-week notice.<br><br>
+          The campus deadline is usually four to eight weeks before the national one, and is where most people lose. Plan backwards from the national date, then keep going.
         </p>
       </div>
 
     </section>
   </div>
 
-  <!-- ===== VISION ===== -->
-  <section id="vision">
-    <div class="section-label reveal">The Bigger Play</div>
-    <h2 class="section-title reveal">Built for UTSA. <span style="color:var(--gold)">Designed for every Honors College.</span></h2>
-    <p class="section-sub reveal">UTSA Honors is one of 330+ Honors programs across the US — together serving over 200,000 students who all face the same hidden-curriculum equity problem. We're solving it here first, then everywhere.</p>
-    <div class="problem-grid">
-
-      <div class="problem-card reveal">
-        <span class="p-icon">📍</span>
-        <div class="p-title">v1 · Live now</div>
-        <p class="p-text">The Oracle is in production for UTSA Honors today. Every section on this page is a working feature — the chat is real, the streaming is real, the knowledge base is grounded in Honors College policy. This isn't a mockup.</p>
-      </div>
-
-      <div class="problem-card reveal">
-        <span class="p-icon">📈</span>
-        <div class="p-title">v2 · Summer 2026</div>
-        <p class="p-text">Personalized student profiles — major, year, GPA, goals — feed tailored answers. iOS and Android wrappers. Deadline reminders piped directly into student calendars so the Monday Message stops being the only signal.</p>
-      </div>
-
-      <div class="problem-card reveal">
-        <span class="p-icon">🌐</span>
-        <div class="p-title">v3 · Fall 2026</div>
-        <p class="p-text">Pilot deployments at 2–3 partner Honors colleges. Each gets a configured knowledge base mirroring their policies. Advisor offices get per-school analytics — which questions students keep asking, where the policy gaps live.</p>
-      </div>
-
-      <div class="problem-card reveal">
-        <span class="p-icon">🏛️</span>
-        <div class="p-title">v4 · 2027</div>
-        <p class="p-text">Licensed platform any university Honors college can deploy. Annual contract per institution, advisor dashboard, portal SSO. Equity infrastructure for the 200,000+ Honors students nationwide, with one tool built by students for students.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== PLAYBOOK ===== -->
+  <!-- PLAYBOOK -->
   <section id="playbook">
-    <div class="section-label reveal">The Playbook</div>
-    <h2 class="section-title reveal">Build the record <span style="color:var(--gold)">before you need it.</span></h2>
-    <p class="section-sub reveal">Concrete moves to make this semester so that when scholarship and grad-school season hits, your application has substance. Most students realize what they need too late. Don't be most students.</p>
+    <div class="section-label reveal">Playbook</div>
+    <h2 class="section-title reveal">Things I wish I'd done <span style="color:var(--gold)">freshman year.</span></h2>
+    <p class="section-sub reveal">Stuff I see now would have moved the needle most, looking back. Click any card to ask the Oracle for specifics tailored to your major and year.</p>
 
     <div class="problem-grid">
 
@@ -704,16 +663,16 @@ footer span { color:var(--gold); }
 
   <!-- FINAL CTA -->
   <div class="cta-section">
-    <div class="section-label reveal">Ready when you are</div>
-    <h2 class="reveal">Stop searching.<br><span>Start knowing.</span></h2>
-    <p class="reveal">The Oracle is live, free, and available right now. Ask your first question in seconds.</p>
-    <button class="btn-primary reveal" onclick="openChat()" style="font-size:16px;padding:17px 40px;">Ask the Oracle</button>
+    <div class="section-label reveal">Try it</div>
+    <h2 class="reveal">Open the chat and<br><span>ask it something specific.</span></h2>
+    <p class="reveal">"How do I submit an ELA budget" works. So does "what's the Goldwater timeline for a sophomore."</p>
+    <button class="btn-primary reveal" onclick="openChat()" style="font-size:16px;padding:17px 40px;">Open the chat</button>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <p>The <span>Honors Oracle</span> &nbsp;·&nbsp; Built for UTSA Honors College Students &nbsp;·&nbsp; A student-led initiative by <span>Anudeep Bonagiri</span></p>
-    <p style="margin-top:8px;opacity:0.6;">Powered by Groq Llama 3 &nbsp;·&nbsp; Not an official UTSA product &nbsp;·&nbsp; Always verify critical deadlines at honors.utsa.edu</p>
+    <p>Honors Oracle. A side project by <span>Anudeep Bonagiri</span>, UTSA Honors CS.</p>
+    <p style="margin-top:8px;opacity:0.6;">Not affiliated with UTSA. Always double-check critical deadlines at honors.utsa.edu before you act on anything the chat says.</p>
   </footer>
 
 </div><!-- /landing -->
@@ -726,8 +685,8 @@ footer span { color:var(--gold); }
     <button class="chat-back" onclick="closeChat()">← Back</button>
     <span class="ch-logo">🦉</span>
     <div class="ch-text">
-      <h2>The Honors Oracle</h2>
-      <p>UTSA Honors College · Digital Navigator · 24 / 7</p>
+      <h2>Honors Oracle</h2>
+      <p>UTSA Honors · Unofficial · Always check the source</p>
     </div>
     <span class="live-dot">● Live</span>
   </div>
@@ -735,8 +694,8 @@ footer span { color:var(--gold); }
   <div id="messages">
     <div id="chat-welcome">
       <div class="cw-owl">🦉</div>
-      <h3>Ask the Oracle</h3>
-      <p>Instant answers on ELA requirements, thesis steps, scholarships, and every Honors College policy, any hour of the day.</p>
+      <h3>What do you want to know?</h3>
+      <p>Try a question about ELA, thesis, scholarships, or research. The chat reads UTSA Honors policy and answers from there.</p>
       <div class="quick-chips">
         <button class="qchip" onclick="quick('What are the ELA requirements to graduate from the Honors College?')"><span>📋</span>ELA Requirements</button>
         <button class="qchip" onclick="quick('Walk me through the Honors thesis process step by step.')"><span>🎓</span>Thesis Process</button>
@@ -759,7 +718,7 @@ footer span { color:var(--gold); }
       </div>
       <button id="go" onclick="send()">➤</button>
     </div>
-    <div class="foot-note">The Honors Oracle · UTSA Honors College · Powered by Groq Llama 3</div>
+    <div class="foot-note">Unofficial. Verify critical info at honors.utsa.edu.</div>
   </div>
 
 </div><!-- /chat-view -->
@@ -826,7 +785,7 @@ function closeChat(){
     });
   });
 
-  const ids=['research','scholarships','vision','playbook'];
+  const ids=['research','scholarships','playbook'];
   const sections=ids.map(id=>document.getElementById(id)).filter(Boolean);
 
   if('IntersectionObserver' in window){
