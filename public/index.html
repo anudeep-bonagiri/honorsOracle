@@ -134,7 +134,8 @@ section { padding:80px 24px; max-width:1100px; margin:0 auto; }
   padding:28px 24px; transition:all .2s;
 }
 .problem-card:hover { border-color:rgba(240,171,0,0.5); transform:translateY(-3px); background:rgba(255,255,255,0.07); }
-.p-icon { font-size:32px; margin-bottom:14px; display:block; }
+.p-icon { width:30px; height:30px; color:var(--gold); margin-bottom:14px; display:block; stroke-width:1.75; }
+.qchip-i { width:18px; height:18px; color:var(--gold); margin-bottom:6px; display:block; stroke-width:1.75; }
 .p-title { font-size:16px; color:var(--gold); margin-bottom:8px; font-weight:700; }
 .p-text { font-size:13.5px; color:var(--dim); line-height:1.7; }
 
@@ -250,7 +251,7 @@ footer span { color:var(--gold); }
   transition:all .18s;
 }
 .qchip:hover { background:rgba(240,171,0,0.12); border-color:var(--gold); transform:translateY(-2px); }
-.qchip span { display:block; font-size:16px; margin-bottom:2px; }
+.qchip > .qchip-i { display:block; margin-bottom:4px; }
 
 /* messages */
 .msg { display:flex; gap:9px; animation:fadeUp .25s ease both; }
@@ -391,17 +392,17 @@ footer span { color:var(--gold); }
       <p class="section-sub reveal">The Honors handbook is dense. Canvas announcements get buried. Office hours are 9–5. By the time you find what you need, the deadline already passed.</p>
       <div class="problem-grid">
         <div class="problem-card reveal">
-          <span class="p-icon">🌙</span>
+          <i class="p-icon" data-lucide="moon"></i>
           <div class="p-title">The deadlines that hit at 11pm</div>
           <p class="p-text">Most of the deadlines I've almost missed were on a Sunday night or a random Tuesday at 11pm. The Honors office isn't open then. Now there's something to ask.</p>
         </div>
         <div class="problem-card reveal">
-          <span class="p-icon">🗂</span>
+          <i class="p-icon" data-lucide="layers"></i>
           <div class="p-title">The handbook is forty pages</div>
           <p class="p-text">Plus Canvas announcements. Plus three department websites that sometimes disagree with each other. The chat reads the documents so you don't have to.</p>
         </div>
         <div class="problem-card reveal">
-          <span class="p-icon">🎓</span>
+          <i class="p-icon" data-lucide="graduation-cap"></i>
           <div class="p-title">Stuff your advisor assumes you know</div>
           <p class="p-text">If your parents went to college in the US, you probably already know how things like priority registration or ELA budget approvals are supposed to work. If they didn't, you learn this stuff by getting burned by it.</p>
         </div>
@@ -442,31 +443,31 @@ footer span { color:var(--gold); }
       <div class="problem-grid">
 
         <div class="problem-card reveal">
-          <span class="p-icon">⏱</span>
+          <i class="p-icon" data-lucide="timer"></i>
           <div class="p-title">Stop reading the handbook for the eighth time</div>
           <p class="p-text">Ask once. Get the answer. Move on with your day. The handbook isn't going anywhere, but you don't have to keep grepping it.</p>
         </div>
 
         <div class="problem-card reveal">
-          <span class="p-icon">🔭</span>
+          <i class="p-icon" data-lucide="telescope"></i>
           <div class="p-title">Programs nobody bothered to mention</div>
           <p class="p-text">Goldwater is open to sophomores. Most people hear about it junior year, after the prep window already closed. There are dozens of these — the chat surfaces the ones that fit your year and major.</p>
         </div>
 
         <div class="problem-card reveal">
-          <span class="p-icon">✅</span>
+          <i class="p-icon" data-lucide="check-circle"></i>
           <div class="p-title">Less waiting on email</div>
           <p class="p-text">The form wants three docs or four? Ask, submit, done. Beats waiting three days for a reply at the wrong time of night.</p>
         </div>
 
         <div class="problem-card reveal">
-          <span class="p-icon">⚖️</span>
+          <i class="p-icon" data-lucide="scale"></i>
           <div class="p-title">The stuff people with academic networks already know</div>
           <p class="p-text">When to apply, what reviewers actually weight, what a strong essay looks like. At schools with deep academic networks this is folklore everyone picks up. Less so here. Trying to close that gap.</p>
         </div>
 
         <div class="problem-card reveal">
-          <span class="p-icon">🎯</span>
+          <i class="p-icon" data-lucide="target"></i>
           <div class="p-title">Better questions for office hours</div>
           <p class="p-text">Get oriented before you walk in, so you ask the things your advisor can actually help with. Not the things a chatbot could've answered in ten seconds.</p>
         </div>
@@ -489,37 +490,37 @@ footer span { color:var(--gold); }
     <div class="problem-grid">
 
       <div class="problem-card reveal" onclick="quick('How do I land a research position at UTSA as a STEM major, and which national REU programs should I target?')">
-        <span class="p-icon">🧪</span>
+        <i class="p-icon" data-lucide="flask-conical"></i>
         <div class="p-title">STEM · Bio · Chem · CS · Eng · Math · Physics</div>
         <p class="p-text"><strong>At UTSA:</strong> faculty directory at utsa.edu/research, plus the URA undergraduate-research grants. <strong>National:</strong> NSF REU sites (apply to 6–10; site acceptance ~5–15%), Amgen Scholars, HHMI EXROP, NIH Summer Internship Program, DAAD RISE (Germany). Most summer deadlines hit in February.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('What research opportunities exist for health-sciences and pre-med undergrads at UTSA and externally?')">
-        <span class="p-icon">🧬</span>
+        <i class="p-icon" data-lucide="dna"></i>
         <div class="p-title">Health Sciences · Pre-Med · Public Health</div>
         <p class="p-text"><strong>At UTSA:</strong> NIH-funded MARC and RISE programs for biomedical researchers, plus UT Health San Antonio connections. <strong>National:</strong> NIH SIP, Mayo Clinic SURF, MD Anderson CPRIT Summer Program, Texas HHS internships, AAMC summer programs.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('How do social science and psychology undergrads find research, and what fellowships exist before grad school?')">
-        <span class="p-icon">🧠</span>
+        <i class="p-icon" data-lucide="brain"></i>
         <div class="p-title">Social Sciences · Psychology · Economics</div>
         <p class="p-text"><strong>Move 1:</strong> cold-email three faculty whose papers you actually read. <strong>National:</strong> APA STEP, NSF REU in psychology/sociology, NBER (econ), and predoctoral fellowships at Stanford SIEPR, Harvard/Chicago/MIT labs — paid 2-year positions for graduates heading to a PhD.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('What research and fellowship opportunities exist for humanities, arts, and languages majors?')">
-        <span class="p-icon">📜</span>
+        <i class="p-icon" data-lucide="scroll-text"></i>
         <div class="p-title">Humanities · Arts · Languages</div>
         <p class="p-text"><strong>At UTSA:</strong> URA grants fund humanities and creative work, not only STEM. <strong>National:</strong> Mellon Mays Undergraduate Fellowship (the high-leverage pre-PhD path for humanities students), Critical Language Scholarship, Beinecke Scholarship (juniors, $34K toward grad school), ACLS dissertation programs in the long run.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('What policy, business, and public-service research and internship paths should I aim for?')">
-        <span class="p-icon">⚖️</span>
+        <i class="p-icon" data-lucide="scale"></i>
         <div class="p-title">Business · Policy · Public Service</div>
         <p class="p-text"><strong>National:</strong> PPIA Junior Summer Institute (free summer policy school for rising seniors), Federal Reserve undergrad analyst programs, congressional and Texas Legislature internships, NBER for empirical econ, McNair Scholars for first-gen and underrepresented students aiming at a PhD.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('How do I cold-email a faculty member at UTSA to ask about joining their lab? Give me a template I can adapt.')">
-        <span class="p-icon">📩</span>
+        <i class="p-icon" data-lucide="send"></i>
         <div class="p-title">Cold-Email a UTSA Faculty Mentor</div>
         <p class="p-text">Read one of their recent papers. Reference a specific claim from it in your email. Say what you bring — a class, a tool, a specific question. Ask for a 15-minute conversation, not a lab spot. Send Tue–Thu, 8–10am. Most students never email anyone; sending three this week puts you ahead of your cohort.</p>
       </div>
@@ -537,49 +538,49 @@ footer span { color:var(--gold); }
       <div class="problem-grid" style="margin-bottom:36px;">
 
         <div class="problem-card reveal" onclick="quick('Tell me everything about the Goldwater Scholarship — eligibility, what reviewers look for, and how to win it.')">
-          <span class="p-icon">🔬</span>
+          <i class="p-icon" data-lucide="microscope"></i>
           <div class="p-title">Goldwater Scholarship</div>
           <p class="p-text"><strong>For:</strong> STEM sophs/juniors targeting a research PhD. <strong>Award:</strong> $7,500/yr up to 2 yrs. <strong>Deadline:</strong> campus late Jan. <strong>Reviewers want:</strong> a 3-page research essay that reads like a junior PI's Specific Aims, plus real lab experience. <strong>Tip:</strong> start research freshman year — second-semester sophomores rarely have enough runway.</p>
         </div>
 
         <div class="problem-card reveal" onclick="quick('Walk me through applying for the Fulbright U.S. Student Program as a UTSA senior.')">
-          <span class="p-icon">🌍</span>
+          <i class="p-icon" data-lucide="globe"></i>
           <div class="p-title">Fulbright U.S. Student</div>
           <p class="p-text"><strong>For:</strong> graduating seniors and recent alumni. One year of study, research, or English teaching abroad. <strong>Deadline:</strong> campus early Sep, national mid-Oct. <strong>Reviewers want:</strong> defensible country fit, language readiness, project that is feasible in one year, cultural-ambassadorship evidence. <strong>Tip:</strong> contact host institutions in May — winners know their hosts before submitting.</p>
         </div>
 
         <div class="problem-card reveal" onclick="quick('How does the NSF Graduate Research Fellowship Program work and how should I prepare an application?')">
-          <span class="p-icon">📚</span>
+          <i class="p-icon" data-lucide="book-open"></i>
           <div class="p-title">NSF GRFP</div>
           <p class="p-text"><strong>For:</strong> seniors entering STEM PhDs and 1st/2nd-year grads. <strong>Award:</strong> $37K/yr stipend + $16K tuition for 3 yrs. <strong>Deadline:</strong> mid-Oct. <strong>Reviewers want:</strong> Intellectual Merit AND Broader Impacts weighted equally. <strong>Tip:</strong> broader-impacts is where most STEM applicants fumble. List named, completed outreach. "I plan to mentor…" loses to "I taught Saturday Coding Club at Brackenridge."</p>
         </div>
 
         <div class="problem-card reveal" onclick="quick('What does the Truman Scholarship look for and how do I position myself for it as a junior?')">
-          <span class="p-icon">🏛️</span>
+          <i class="p-icon" data-lucide="landmark"></i>
           <div class="p-title">Truman Scholarship</div>
           <p class="p-text"><strong>For:</strong> juniors committed to public-service careers (gov, nonprofit, advocacy). <strong>Award:</strong> up to $30K for grad school. <strong>Deadline:</strong> campus early Jan; UTSA nominates one student. <strong>Reviewers want:</strong> sustained, named, measurable work on ONE policy issue across years. <strong>Tip:</strong> Truman doesn't reward generalists. Pick a lane, own it visibly, build a multi-year record.</p>
         </div>
 
         <div class="problem-card reveal" onclick="quick('What is the Udall Scholarship and who should apply?')">
-          <span class="p-icon">🌲</span>
+          <i class="p-icon" data-lucide="tree-pine"></i>
           <div class="p-title">Udall Scholarship</div>
           <p class="p-text"><strong>For:</strong> sophs/juniors on three tracks — environment, Native American health policy, or tribal public policy. <strong>Award:</strong> up to $7,000. <strong>Deadline:</strong> early Mar. <strong>Reviewers want:</strong> deep, demonstrated commitment to one track, not all three. <strong>Tip:</strong> the environment track is most competitive; the policy tracks have higher acceptance rates with strong applications.</p>
         </div>
 
         <div class="problem-card reveal" onclick="quick('How do Gilman, Boren, and CLS compare for funding international study and language work?')">
-          <span class="p-icon">✈️</span>
+          <i class="p-icon" data-lucide="plane"></i>
           <div class="p-title">Gilman · Boren · CLS</div>
           <p class="p-text"><strong>Gilman:</strong> Pell recipients abroad, up to $5K ($8K for critical-need languages), two cycles per year. <strong>Boren:</strong> up to $25K for critical-language study abroad with federal-service commitment after. <strong>CLS:</strong> fully-funded summer language program, deadline mid-Nov. <strong>Tip:</strong> all three reward applicants who clearly explain why this specific language matters for their career.</p>
         </div>
 
         <div class="problem-card reveal" onclick="quick('What are the Rhodes, Marshall, and Mitchell scholarships, and is it realistic for me to apply?')">
-          <span class="p-icon">🎓</span>
+          <i class="p-icon" data-lucide="graduation-cap"></i>
           <div class="p-title">Rhodes · Marshall · Mitchell</div>
           <p class="p-text"><strong>For:</strong> graduating seniors → UK/Ireland grad study. <strong>Award:</strong> 2 yrs+ fully funded. <strong>Deadlines:</strong> October. <strong>Reviewers want:</strong> institutional-level intellectual leadership — you ran the thing, founded the thing, fixed the thing. <strong>Tip:</strong> if you can't name 3 distinct leadership accomplishments with measurable impact, this isn't your cycle. Try again next year with a stronger record.</p>
         </div>
 
         <div class="problem-card reveal" onclick="quick('What UTSA Honors-specific scholarships and awards exist, and how do I actually find them?')">
-          <span class="p-icon">⭐</span>
+          <i class="p-icon" data-lucide="star"></i>
           <div class="p-title">UTSA Honors-Specific Awards</div>
           <p class="p-text">Internal Honors awards — study-abroad supplements, research grants, named scholarships — are announced through the <strong>Monday Message</strong> and posted in the <strong>Honors portal</strong>. Eligibility usually requires Honors standing plus a minimum GPA. <strong>Tip:</strong> the pool is small. Students who win these read the Monday Message every week. Showing up matters more than at the national level.</p>
         </div>
@@ -587,7 +588,7 @@ footer span { color:var(--gold); }
       </div>
 
       <div class="problem-card reveal" style="border-color:rgba(240,171,0,0.45);background:rgba(240,171,0,0.06);">
-        <span class="p-icon">🎯</span>
+        <i class="p-icon" data-lucide="target"></i>
         <div class="p-title">A few things reviewers tend to care about</div>
         <p class="p-text" style="line-height:1.9;">
           Specific research questions read better than broad interest areas. "Climate policy" is vague. "How ERCOT models winter-storm load forecasts after Uri" is something a reviewer can imagine you actually working on.<br><br>
@@ -611,49 +612,49 @@ footer span { color:var(--gold); }
     <div class="problem-grid">
 
       <div class="problem-card reveal" onclick="quick('I am a freshman or sophomore at UTSA Honors. Give me a step-by-step plan to get into a research lab this semester, starting from zero connections.')">
-        <span class="p-icon">🔬</span>
+        <i class="p-icon" data-lucide="microscope"></i>
         <div class="p-title">Get into a lab this month</div>
         <p class="p-text">Not next semester. This month. Even as a freshman with one CS class on your transcript, faculty take students who show up and bring energy. By the time you're a junior applying for Goldwater, the students who started freshman year have a two-year head start.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('How do I pick a specific research question to focus on as an undergrad, instead of just saying I am interested in a broad field?')">
-        <span class="p-icon">🎯</span>
+        <i class="p-icon" data-lucide="target"></i>
         <div class="p-title">Pick a question, not a field</div>
         <p class="p-text">"I'm interested in AI" gets you nowhere. "I want to study how language models behave when given conflicting instructions" gets you a faculty meeting. Reviewers and mentors respond to specificity. Spend a weekend picking one question worth two years.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('What kind of public portfolio or GitHub should a CS sophomore at UTSA Honors build to be competitive for top grad programs?')">
-        <span class="p-icon">🗂️</span>
+        <i class="p-icon" data-lucide="archive"></i>
         <div class="p-title">Build one public artifact</div>
         <p class="p-text">A GitHub with three substantive projects. A personal site that explains what you care about and why. A blog post about something you learned the hard way. Reviewers can't see your grades. They can see your artifacts. Make them findable.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('I have not done any leadership at UTSA yet as a sophomore. What is one named leadership thing I can start this month that actually matters for scholarships?')">
-        <span class="p-icon">⭐</span>
+        <i class="p-icon" data-lucide="star"></i>
         <div class="p-title">Start one named thing</div>
         <p class="p-text">Founded, organized, ran — not "member of," not "participated in." A reading group you run. A workshop you teach. A small event you organize. Truman, Rhodes, Marshall, and the broader-impacts half of NSF GRFP all weight this heavily.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('Give me a cold-email template I can adapt to send to a UTSA faculty member this week, plus tips on how to find faculty whose work overlaps with my interests.')">
-        <span class="p-icon">📩</span>
+        <i class="p-icon" data-lucide="send"></i>
         <div class="p-title">Cold-email three faculty</div>
         <p class="p-text">This week. Read one paper from each, reference a specific claim in your email, ask for 15 minutes. Most students never email anyone. Sending three puts you in the top 5% of your cohort by initiative alone. Ask the Oracle for the template.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('Which 5 papers should a UTSA Honors CS undergrad read this semester to actually understand what real research looks like and how to talk to faculty?')">
-        <span class="p-icon">📚</span>
+        <i class="p-icon" data-lucide="book-open"></i>
         <div class="p-title">Read five real papers</div>
         <p class="p-text">Not five textbooks. Five real research papers, published this year, in the area you claim to care about. You learn how researchers actually think, what good questions look like, and how to talk to faculty without sounding like a student.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('I am a freshman at UTSA Honors. What should my personal scholarship and research timeline look like for the next four years to maximize my chances at Goldwater, Fulbright, and NSF GRFP?')">
-        <span class="p-icon">🗓️</span>
+        <i class="p-icon" data-lucide="calendar-days"></i>
         <div class="p-title">Plan four years backward</div>
         <p class="p-text">Goldwater opens sophomore year. Fulbright happens senior fall. NSF GRFP happens senior fall too. Each one requires 18 months of prep. If you start junior year, you've already lost the cycle. Map your years backward from the deadlines that matter.</p>
       </div>
 
       <div class="problem-card reveal" onclick="quick('How should I document my projects, leadership, and research as I do them so that scholarship and grad school applications are easy later? What system should I keep?')">
-        <span class="p-icon">📝</span>
+        <i class="p-icon" data-lucide="notebook-pen"></i>
         <div class="p-title">Document as you go</div>
         <p class="p-text">A running brag-file. One line per accomplishment, the date, who saw it, what changed because of it. When the Goldwater essay asks for 3 pages on your research record, students who kept this file write it in a weekend. Students who didn't, miss the cycle.</p>
       </div>
@@ -697,14 +698,14 @@ footer span { color:var(--gold); }
       <h3>What do you want to know?</h3>
       <p>Try a question about ELA, thesis, scholarships, or research. The chat reads UTSA Honors policy and answers from there.</p>
       <div class="quick-chips">
-        <button class="qchip" onclick="quick('What are the ELA requirements to graduate from the Honors College?')"><span>📋</span>ELA Requirements</button>
-        <button class="qchip" onclick="quick('Walk me through the Honors thesis process step by step.')"><span>🎓</span>Thesis Process</button>
-        <button class="qchip" onclick="quick('How do I find research opportunities in my field at UTSA and externally?')"><span>🔬</span>Find Research</button>
-        <button class="qchip" onclick="quick('Tell me everything about the Goldwater Scholarship — eligibility, what reviewers look for, and how to win it.')"><span>🏛️</span>Goldwater Guide</button>
-        <button class="qchip" onclick="quick('What scholarships should I be applying for right now as a UTSA Honors student?')"><span>💰</span>Scholarships</button>
-        <button class="qchip" onclick="quick('How do I submit an ELA budget request?')"><span>📬</span>ELA Budget</button>
-        <button class="qchip" onclick="quick('What are the SPICE experiential learning tracks?')"><span>✨</span>SPICE Tracks</button>
-        <button class="qchip" onclick="quick('What are the full graduation requirements for the Honors College?')"><span>🏆</span>Graduation Reqs</button>
+        <button class="qchip" onclick="quick('What are the ELA requirements to graduate from the Honors College?')"><i class="qchip-i" data-lucide="clipboard-list"></i>ELA Requirements</button>
+        <button class="qchip" onclick="quick('Walk me through the Honors thesis process step by step.')"><i class="qchip-i" data-lucide="graduation-cap"></i>Thesis Process</button>
+        <button class="qchip" onclick="quick('How do I find research opportunities in my field at UTSA and externally?')"><i class="qchip-i" data-lucide="microscope"></i>Find Research</button>
+        <button class="qchip" onclick="quick('Tell me everything about the Goldwater Scholarship — eligibility, what reviewers look for, and how to win it.')"><i class="qchip-i" data-lucide="landmark"></i>Goldwater Guide</button>
+        <button class="qchip" onclick="quick('What scholarships should I be applying for right now as a UTSA Honors student?')"><i class="qchip-i" data-lucide="coins"></i>Scholarships</button>
+        <button class="qchip" onclick="quick('How do I submit an ELA budget request?')"><i class="qchip-i" data-lucide="mail"></i>ELA Budget</button>
+        <button class="qchip" onclick="quick('What are the SPICE experiential learning tracks?')"><i class="qchip-i" data-lucide="sparkles"></i>SPICE Tracks</button>
+        <button class="qchip" onclick="quick('What are the full graduation requirements for the Honors College?')"><i class="qchip-i" data-lucide="trophy"></i>Graduation Reqs</button>
       </div>
     </div>
   </div>
@@ -726,7 +727,11 @@ footer span { color:var(--gold); }
 
 
 
+<script src="https://unpkg.com/lucide@latest"></script>
 <script>
+/* ===== ICONS ===== */
+if (window.lucide) lucide.createIcons();
+
 /* ===== STARS ===== */
 (function(){
   const c=document.getElementById('stars'), ctx=c.getContext('2d');
