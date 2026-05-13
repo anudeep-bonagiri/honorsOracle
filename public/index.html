@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Honors Oracle — UTSA Honors College</title>
+<meta name="description" content="The 24/7 AI navigator for UTSA Honors College students. Instant answers on ELA, thesis, scholarships, and more.">
+<style>
+:root {
+  --navy:   #0C2340;
+  --navy2:  #0f2d52;
+  --navy3:  #1a3a5c;
+  --gold:   #F0AB00;
+  --gold2:  #ffc726;
+  --gold3:  #ffe082;
+  --cream:  #FAF7F0;
+  --dim:    rgba(250,247,240,0.55);
+  --dim2:   rgba(250,247,240,0.35);
+  --border: rgba(240,171,0,0.22);
+  --glass:  rgba(255,255,255,0.055);
+  --glass2: rgba(255,255,255,0.035);
+}
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--navy); color:var(--cream); font-family:'Georgia','Times New Roman',serif; overflow-x:hidden; }
+
+/* ===== STAR CANVAS ===== */
+#stars { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+/* ===== VIEWS ===== */
+#landing { position:relative; z-index:1; }
+#chat-view {
+  display:none; position:fixed; inset:0; z-index:100;
+  background:var(--navy); flex-direction:column;
+}
+#chat-view.active { display:flex; }
+
+/* ===== NAV ===== */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  display:flex; align-items:center; gap:12px; padding:14px 32px;
+  background:rgba(12,35,64,0.85); backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(240,171,0,0.18);
+  transition:background .3s;
+}
+.nav-logo { font-size:22px; }
+.nav-brand { font-size:14px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; font-weight:700; }
+.nav-badge {
+  margin-left:auto; background:rgba(240,171,0,0.1); border:1px solid rgba(240,171,0,0.4);
+  color:var(--gold); font-size:9px; letter-spacing:1.5px; padding:4px 11px;
+  border-radius:20px; font-family:sans-serif; text-transform:uppercase;
+}
+.nav-cta {
+  background:var(--gold); color:var(--navy); border:none; padding:9px 20px;
+  border-radius:10px; font-size:12px; font-weight:700; cursor:pointer;
+  font-family:'Georgia',serif; letter-spacing:0.5px; transition:all .2s;
+}
+.nav-cta:hover { background:var(--gold2); transform:scale(1.04); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center;
+  padding:120px 24px 80px; position:relative;
+}
+.hero-eyebrow {
+  font-size:11px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--gold); font-family:sans-serif; margin-bottom:20px;
+  border:1px solid rgba(240,171,0,0.3); padding:5px 16px; border-radius:20px;
+  background:rgba(240,171,0,0.07); animation:fadeUp .6s ease both;
+}
+.hero-owl {
+  font-size:72px; line-height:1; margin-bottom:20px;
+  animation:owlFloat 4s ease-in-out infinite, fadeUp .5s ease both;
+  filter:drop-shadow(0 0 30px rgba(240,171,0,0.5));
+}
+@keyframes owlFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+.hero h1 {
+  font-size:clamp(38px,6vw,72px); color:var(--cream); line-height:1.1;
+  margin-bottom:14px; animation:fadeUp .55s .1s ease both;
+}
+.hero h1 span { color:var(--gold); }
+.hero-sub {
+  font-size:clamp(15px,2vw,20px); color:var(--dim); line-height:1.75;
+  max-width:560px; margin-bottom:40px; animation:fadeUp .55s .2s ease both;
+}
+.hero-actions { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; animation:fadeUp .55s .3s ease both; }
+.btn-primary {
+  background:var(--gold); color:var(--navy); border:none;
+  padding:15px 34px; border-radius:13px; font-size:15px; font-weight:700;
+  cursor:pointer; font-family:'Georgia',serif; letter-spacing:0.5px;
+  transition:all .22s; box-shadow:0 4px 24px rgba(240,171,0,0.35);
+}
+.btn-primary:hover { background:var(--gold2); transform:translateY(-2px); box-shadow:0 8px 32px rgba(240,171,0,0.5); }
+.btn-ghost {
+  background:transparent; color:var(--cream); border:1px solid rgba(250,247,240,0.25);
+  padding:15px 34px; border-radius:13px; font-size:15px; cursor:pointer;
+  font-family:'Georgia',serif; transition:all .22s;
+}
+.btn-ghost:hover { border-color:var(--gold); color:var(--gold); }
+
+.hero-stats {
+  display:flex; gap:40px; margin-top:60px; flex-wrap:wrap; justify-content:center;
+  animation:fadeUp .55s .4s ease both;
+}
+.stat { text-align:center; }
+.stat-num { font-size:32px; color:var(--gold); font-weight:700; line-height:1; }
+.stat-label { font-size:11px; color:var(--dim2); letter-spacing:1px; text-transform:uppercase; font-family:sans-serif; margin-top:4px; }
+
+/* ===== SECTION BASE ===== */
+section { padding:80px 24px; max-width:1100px; margin:0 auto; }
+.section-label {
+  font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold);
+  font-family:sans-serif; text-align:center; margin-bottom:14px;
+}
+.section-title { font-size:clamp(26px,4vw,40px); text-align:center; line-height:1.25; margin-bottom:12px; }
+.section-sub { font-size:15px; color:var(--dim); text-align:center; line-height:1.7; max-width:520px; margin:0 auto 52px; }
+
+/* ===== PROBLEM SECTION ===== */
+.problem-section { background:rgba(255,255,255,0.025); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.problem-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; margin-top:48px; }
+.problem-card {
+  background:var(--glass); border:1px solid var(--border); border-radius:16px;
+  padding:28px 24px; transition:all .2s;
+}
+.problem-card:hover { border-color:rgba(240,171,0,0.5); transform:translateY(-3px); background:rgba(255,255,255,0.07); }
+.p-icon { font-size:32px; margin-bottom:14px; display:block; }
+.p-title { font-size:16px; color:var(--gold); margin-bottom:8px; font-weight:700; }
+.p-text { font-size:13.5px; color:var(--dim); line-height:1.7; }
+
+/* ===== HOW IT WORKS ===== */
+.steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
+.step {
+  background:var(--glass); border:1px solid var(--border); border-radius:16px;
+  padding:30px 24px; text-align:center; position:relative; overflow:hidden;
+  transition:all .2s;
+}
+.step::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0; transition:opacity .2s;
+}
+.step:hover { transform:translateY(-4px); border-color:rgba(240,171,0,0.45); }
+.step:hover::before { opacity:1; }
+.step-num {
+  width:42px; height:42px; border-radius:50%;
+  background:rgba(240,171,0,0.12); border:1px solid rgba(240,171,0,0.4);
+  color:var(--gold); font-size:16px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 16px; font-family:sans-serif;
+}
+.step h3 { font-size:16px; color:var(--cream); margin-bottom:10px; }
+.step p { font-size:13px; color:var(--dim); line-height:1.7; }
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-wrap { background:linear-gradient(180deg,transparent,rgba(240,171,0,0.04),transparent); }
+.testimonials { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
+.tcard {
+  background:var(--glass); border:1px solid var(--border); border-radius:18px;
+  padding:28px 24px; position:relative; transition:all .22s;
+}
+.tcard:hover { transform:translateY(-4px); border-color:rgba(240,171,0,0.4); box-shadow:0 12px 40px rgba(0,0,0,0.3); }
+.tcard::before {
+  content:'"'; position:absolute; top:16px; right:22px;
+  font-size:56px; color:rgba(240,171,0,0.15); line-height:1; font-family:'Georgia',serif;
+}
+.stars { color:var(--gold); font-size:13px; letter-spacing:2px; margin-bottom:14px; }
+.tcard-text { font-size:14px; color:var(--cream); line-height:1.75; margin-bottom:20px; font-style:italic; }
+.tcard-author { display:flex; align-items:center; gap:12px; }
+.tcard-avatar {
+  width:40px; height:40px; border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--navy); display:flex; align-items:center; justify-content:center;
+  font-size:18px; flex-shrink:0;
+}
+.tcard-name { font-size:13px; color:var(--gold); font-weight:700; }
+.tcard-role { font-size:11px; color:var(--dim2); font-family:sans-serif; margin-top:2px; }
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  text-align:center; padding:100px 24px;
+  background:linear-gradient(180deg,transparent,rgba(240,171,0,0.05),transparent);
+}
+.cta-section h2 { font-size:clamp(28px,4vw,46px); margin-bottom:16px; }
+.cta-section h2 span { color:var(--gold); }
+.cta-section p { font-size:16px; color:var(--dim); max-width:480px; margin:0 auto 40px; line-height:1.7; }
+
+/* ===== FOOTER ===== */
+footer {
+  border-top:1px solid var(--border); padding:32px 24px;
+  text-align:center; font-size:12px; color:var(--dim2); font-family:sans-serif;
+}
+footer span { color:var(--gold); }
+
+/* ===== CHAT VIEW ===== */
+.chat-header {
+  flex-shrink:0;
+  background:linear-gradient(160deg,#091c33,#152d50);
+  border-bottom:1.5px solid var(--gold);
+  padding:12px 20px; display:flex; align-items:center; gap:12px;
+  box-shadow:0 2px 24px rgba(0,0,0,0.5);
+}
+.chat-back {
+  background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14);
+  color:var(--cream); padding:7px 14px; border-radius:9px; font-size:12px;
+  cursor:pointer; font-family:'Georgia',serif; transition:all .18s;
+}
+.chat-back:hover { background:rgba(255,255,255,0.12); }
+.ch-logo { font-size:26px; filter:drop-shadow(0 0 5px rgba(240,171,0,0.5)); }
+.ch-text h2 { font-size:15px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; font-weight:700; }
+.ch-text p { font-size:10px; color:var(--dim); font-style:italic; margin-top:1px; }
+.live-dot {
+  margin-left:auto; background:rgba(240,171,0,0.1); border:1px solid rgba(240,171,0,0.4);
+  color:var(--gold); font-size:9px; letter-spacing:1.5px; padding:4px 11px;
+  border-radius:20px; font-family:sans-serif; text-transform:uppercase;
+}
+
+#messages {
+  flex:1; overflow-y:auto; padding:20px 18px;
+  display:flex; flex-direction:column; gap:14px;
+  scroll-behavior:smooth;
+}
+#messages::-webkit-scrollbar { width:3px; }
+#messages::-webkit-scrollbar-thumb { background:rgba(240,171,0,0.2); border-radius:3px; }
+
+/* welcome panel inside chat */
+#chat-welcome {
+  display:flex; flex-direction:column; align-items:center;
+  text-align:center; padding:16px 12px 0;
+  animation:fadeUp .5s ease both;
+}
+.cw-owl { font-size:48px; margin-bottom:10px; animation:owlFloat 4s ease-in-out infinite; filter:drop-shadow(0 0 16px rgba(240,171,0,0.5)); }
+#chat-welcome h3 { font-size:19px; color:var(--gold); margin-bottom:6px; }
+#chat-welcome p { font-size:13px; color:var(--dim); line-height:1.7; max-width:380px; margin-bottom:22px; }
+.quick-chips { display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%; max-width:440px; }
+.qchip {
+  background:var(--glass); border:1px solid var(--border); color:var(--cream);
+  font-family:'Georgia',serif; font-size:12px; padding:10px 12px;
+  border-radius:11px; cursor:pointer; text-align:left; line-height:1.4;
+  transition:all .18s;
+}
+.qchip:hover { background:rgba(240,171,0,0.12); border-color:var(--gold); transform:translateY(-2px); }
+.qchip span { display:block; font-size:16px; margin-bottom:2px; }
+
+/* messages */
+.msg { display:flex; gap:9px; animation:fadeUp .25s ease both; }
+.msg.user { flex-direction:row-reverse; align-self:flex-end; max-width:78%; }
+.msg.bot  { align-self:flex-start; max-width:88%; }
+.av {
+  width:32px; height:32px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:14px; margin-top:3px;
+}
+.av.bot  { background:linear-gradient(135deg,var(--gold),var(--gold2)); color:var(--navy); }
+.av.user { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.13); }
+.bubble { padding:10px 14px; border-radius:15px; font-size:13.5px; line-height:1.68; }
+.msg.bot .bubble  { background:var(--glass); border:1px solid var(--border); border-top-left-radius:4px; }
+.msg.user .bubble { background:var(--gold); color:var(--navy); font-weight:600; border-top-right-radius:4px; }
+.bubble strong { color:var(--gold2); }
+.msg.user .bubble strong { color:var(--navy); }
+.bubble ul { padding-left:16px; margin-top:4px; }
+.bubble li { margin-bottom:3px; }
+.src-tag {
+  display:inline-block; margin-top:8px;
+  font-size:10px; color:rgba(240,171,0,0.6); font-family:sans-serif;
+}
+
+/* follow-up row */
+.fu-row {
+  display:flex; flex-wrap:wrap; gap:7px;
+  margin-top:8px; padding-left:41px;
+  animation:fadeUp .28s .05s ease both;
+}
+.fu-btn {
+  background:rgba(240,171,0,0.07); border:1px solid rgba(240,171,0,0.25);
+  color:rgba(250,247,240,0.8); font-family:'Georgia',serif;
+  font-size:11.5px; padding:6px 13px; border-radius:20px;
+  cursor:pointer; transition:all .15s;
+}
+.fu-btn:hover { background:rgba(240,171,0,0.18); border-color:var(--gold); color:var(--cream); }
+
+/* typing */
+.typing { display:flex; gap:5px; align-items:center; padding:2px 0; }
+.dot { width:7px; height:7px; background:var(--gold); border-radius:50%; animation:bounce 1.3s ease-in-out infinite; }
+.dot:nth-child(2){animation-delay:.2s}
+.dot:nth-child(3){animation-delay:.4s}
+@keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:.5} 30%{transform:translateY(-7px);opacity:1} }
+
+/* input bar */
+#chat-bottom {
+  flex-shrink:0; background:rgba(255,255,255,0.025);
+  border-top:1px solid rgba(240,171,0,0.16); padding:12px 18px 14px;
+}
+.irow { display:flex; gap:9px; align-items:flex-end; max-width:740px; margin:0 auto; }
+.ibox {
+  flex:1; background:rgba(255,255,255,0.07); border:1px solid rgba(240,171,0,0.28);
+  border-radius:13px; padding:10px 14px; display:flex; align-items:flex-end; transition:border-color .2s;
+}
+.ibox:focus-within { border-color:var(--gold); }
+#inp {
+  flex:1; background:none; border:none; outline:none;
+  color:var(--cream); font-family:'Georgia',serif; font-size:13.5px;
+  resize:none; max-height:88px; line-height:1.5;
+}
+#inp::placeholder { color:rgba(250,247,240,0.32); }
+#go {
+  width:41px; height:41px; background:var(--gold); border:none; border-radius:11px;
+  cursor:pointer; font-size:17px; color:var(--navy); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; transition:all .18s;
+}
+#go:hover { background:var(--gold2); transform:scale(1.06); }
+#go:disabled { opacity:.38; cursor:not-allowed; transform:none; }
+.foot-note { text-align:center; font-size:9.5px; color:rgba(250,247,240,0.17); margin-top:7px; font-family:sans-serif; letter-spacing:.6px; text-transform:uppercase; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+.reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<!-- ===== LANDING ===== -->
+<div id="landing">
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">🦉</span>
+    <span class="nav-brand">Honors Oracle</span>
+    <span class="nav-badge">UTSA Honors</span>
+    <button class="nav-cta" onclick="openChat()">Launch Oracle</button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">UTSA Honors College · AI Navigator</div>
+    <div class="hero-owl">🦉</div>
+    <h1>Your questions,<br><span>answered instantly.</span></h1>
+    <p class="hero-sub">The Honors Oracle is a 24/7 AI navigator built specifically for UTSA Honors College students. No waiting. No office hours. No runaround.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openChat()">Ask the Oracle</button>
+      <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView()">See how it works</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Always Available</div></div>
+      <div class="stat"><div class="stat-num">&lt;3s</div><div class="stat-label">Average Response</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Honors-Specific</div></div>
+      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">For All Students</div></div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <div style="background:rgba(255,255,255,0.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <section>
+      <div class="section-label reveal">The Problem</div>
+      <h2 class="section-title reveal">Students deserve answers <span style="color:var(--gold)">right now.</span></h2>
+      <p class="section-sub reveal">The information exists. It is buried in PDFs, lost in Canvas, and locked behind 9-to-5 office hours. That gap costs students deadlines, scholarships, and peace of mind.</p>
+      <div class="problem-grid">
+        <div class="problem-card reveal">
+          <span class="p-icon">🌙</span>
+          <div class="p-title">Midnight Deadlines</div>
+          <p class="p-text">ELA budget due tomorrow. Thesis proposal due Friday. Office closed. A student with no connections has no one to call. The Oracle is always on.</p>
+        </div>
+        <div class="problem-card reveal">
+          <span class="p-icon">🗂</span>
+          <div class="p-title">Fragmented Information</div>
+          <p class="p-text">Answers are scattered across a 40-page handbook, buried Canvas announcements, and three separate department websites. Students should not need to be detectives.</p>
+        </div>
+        <div class="problem-card reveal">
+          <span class="p-icon">🎓</span>
+          <div class="p-title">The Hidden Curriculum</div>
+          <p class="p-text">Students with family connections already know how the system works. First-generation students learn it the hard way. The Oracle levels that playing field.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="section-label reveal">How It Works</div>
+    <h2 class="section-title reveal">Three steps to your answer</h2>
+    <p class="section-sub reveal">No signup required. No forms. No waiting room. Just ask.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3>Ask anything</h3>
+        <p>Type your question in plain language. Deadlines, ELA requirements, thesis steps, scholarship eligibility. Whatever is on your mind.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h3>Get a direct answer</h3>
+        <p>The Oracle pulls from a curated knowledge base of Honors College policies, guidelines, and procedures. No fluff, no runaround.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h3>Follow the thread</h3>
+        <p>Related follow-up questions surface automatically so you can keep exploring without starting over. Like having an advisor who actually has time for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials-wrap">
+    <section>
+      <div class="section-label reveal">Student Voices</div>
+      <h2 class="section-title reveal">Built for students like <span style="color:var(--gold)">you.</span></h2>
+      <p class="section-sub reveal">Here is what students said when they tried the Oracle for the first time.</p>
+      <div class="testimonials">
+
+        <div class="tcard reveal">
+          <div class="stars">★★★★★</div>
+          <p class="tcard-text">"I was submitting my ELA budget at 11pm the night before the deadline and had no idea what documents to attach. The Oracle walked me through the whole process in about 30 seconds. I would have missed that deadline without it."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar">👩🏽</div>
+            <div>
+              <div class="tcard-name">Marisol R.</div>
+              <div class="tcard-role">Junior · Biochemistry · First-Generation Student</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tcard reveal">
+          <div class="stars">★★★★★</div>
+          <p class="tcard-text">"I did not even know the Goldwater Scholarship existed until the Oracle mentioned it when I asked about funding for research. My advisor had never brought it up. Now I am applying. That one conversation could change my entire graduate school path."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar">👨🏾</div>
+            <div>
+              <div class="tcard-name">David O.</div>
+              <div class="tcard-role">Sophomore · Physics · Honors Researcher</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tcard reveal">
+          <div class="stars">★★★★★</div>
+          <p class="tcard-text">"I work 30 hours a week and I literally cannot make it to office hours. Before this, I would email and wait three days for a reply. The Oracle answered my thesis timeline question in under a minute. This is what equity actually looks like."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar">👩🏻</div>
+            <div>
+              <div class="tcard-name">Priya K.</div>
+              <div class="tcard-role">Senior · Computer Science · Working Student</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="cta-section">
+    <div class="section-label reveal">Ready when you are</div>
+    <h2 class="reveal">Stop searching.<br><span>Start knowing.</span></h2>
+    <p class="reveal">The Oracle is live, free, and available right now. Ask your first question in seconds.</p>
+    <button class="btn-primary reveal" onclick="openChat()" style="font-size:16px;padding:17px 40px;">Ask the Oracle</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>The <span>Honors Oracle</span> &nbsp;·&nbsp; Built for UTSA Honors College Students &nbsp;·&nbsp; A student-led initiative by <span>Anudeep Bonagiri</span></p>
+    <p style="margin-top:8px;opacity:0.6;">Powered by Groq Llama 3 &nbsp;·&nbsp; Not an official UTSA product &nbsp;·&nbsp; Always verify critical deadlines at honors.utsa.edu</p>
+  </footer>
+
+</div><!-- /landing -->
+
+
+<!-- ===== CHAT VIEW ===== -->
+<div id="chat-view">
+
+  <div class="chat-header">
+    <button class="chat-back" onclick="closeChat()">← Back</button>
+    <span class="ch-logo">🦉</span>
+    <div class="ch-text">
+      <h2>The Honors Oracle</h2>
+      <p>UTSA Honors College · Digital Navigator · 24 / 7</p>
+    </div>
+    <span class="live-dot">● Live</span>
+  </div>
+
+  <div id="messages">
+    <div id="chat-welcome">
+      <div class="cw-owl">🦉</div>
+      <h3>Ask the Oracle</h3>
+      <p>Instant answers on ELA requirements, thesis steps, scholarships, and every Honors College policy, any hour of the day.</p>
+      <div class="quick-chips">
+        <button class="qchip" onclick="quick('What are the ELA requirements to graduate from the Honors College?')"><span>📋</span>ELA Requirements</button>
+        <button class="qchip" onclick="quick('Walk me through the Honors thesis process step by step.')"><span>🎓</span>Thesis Process</button>
+        <button class="qchip" onclick="quick('What scholarships are available for Honors College students?')"><span>💰</span>Scholarships</button>
+        <button class="qchip" onclick="quick('How do I submit an ELA budget request?')"><span>📬</span>ELA Budget</button>
+        <button class="qchip" onclick="quick('What are the SPICE experiential learning tracks?')"><span>✨</span>SPICE Tracks</button>
+        <button class="qchip" onclick="quick('What are the full graduation requirements for the Honors College?')"><span>🏆</span>Graduation Reqs</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="chat-bottom">
+    <div class="irow">
+      <div class="ibox">
+        <textarea id="inp" rows="1"
+          placeholder="Ask about ELA, thesis, scholarships, deadlines..."
+          onkeydown="onKey(event)" oninput="resize(this)"></textarea>
+      </div>
+      <button id="go" onclick="send()">➤</button>
+    </div>
+    <div class="foot-note">The Honors Oracle · UTSA Honors College · Powered by Groq Llama 3</div>
+  </div>
+
+</div><!-- /chat-view -->
+
+
+<script>
+/* ===== STARS ===== */
+(function(){
+  const c=document.getElementById('stars'), ctx=c.getContext('2d');
+  function resize(){ c.width=innerWidth; c.height=innerHeight; }
+  resize(); window.addEventListener('resize',resize);
+  const N=160;
+  const stars=Array.from({length:N},()=>({
+    x:Math.random()*c.width, y:Math.random()*c.height,
+    r:Math.random()*1.4+0.3, a:Math.random(), da:(Math.random()-.5)*.004,
+    vx:(Math.random()-.5)*.12, vy:(Math.random()-.5)*.12
+  }));
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    stars.forEach(s=>{
+      s.x+=s.vx; s.y+=s.vy; s.a+=s.da;
+      if(s.x<0)s.x=c.width; if(s.x>c.width)s.x=0;
+      if(s.y<0)s.y=c.height; if(s.y>c.height)s.y=0;
+      if(s.a<0.1||s.a>0.9) s.da*=-1;
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(240,171,0,${s.a*0.55})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ===== REVEAL ON SCROLL ===== */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+/* ===== VIEW SWITCHING ===== */
+function openChat(){
+  document.getElementById('chat-view').classList.add('active');
+  document.body.style.overflow='hidden';
+  document.getElementById('inp').focus();
+}
+function closeChat(){
+  document.getElementById('chat-view').classList.remove('active');
+  document.body.style.overflow='';
+}
+
+/* ===== CHAT LOGIC ===== */
+let history=[],busy=false;
+const msgs=document.getElementById('messages');
+
+function resize(el){ el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,88)+'px'; }
+function onKey(e){ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();} }
+function quick(t){ document.getElementById('inp').value=t; send(); }
+
+function removeWelcome(){ const w=document.getElementById('chat-welcome'); if(w)w.remove(); }
+
+function addMsg(role,html){
+  removeWelcome();
+  const wrap=document.createElement('div'); wrap.className='msg '+role;
+  const av=document.createElement('div'); av.className='av '+role; av.textContent=role==='bot'?'🦉':'👤';
+  const bub=document.createElement('div'); bub.className='bubble'; bub.innerHTML=html;
+  wrap.appendChild(av); wrap.appendChild(bub);
+  msgs.appendChild(wrap); msgs.scrollTop=msgs.scrollHeight;
+  return bub;
+}
+
+function showTyping(){
+  removeWelcome();
+  const wrap=document.createElement('div'); wrap.className='msg bot'; wrap.id='typing';
+  const av=document.createElement('div'); av.className='av bot'; av.textContent='🦉';
+  const bub=document.createElement('div'); bub.className='bubble';
+  bub.innerHTML='<div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+  wrap.appendChild(av); wrap.appendChild(bub); msgs.appendChild(wrap); msgs.scrollTop=msgs.scrollHeight;
+}
+function removeTyping(){ const t=document.getElementById('typing'); if(t)t.remove(); }
+
+function addFollowups(qs){
+  const row=document.createElement('div'); row.className='fu-row';
+  qs.forEach(q=>{ const b=document.createElement('button'); b.className='fu-btn'; b.textContent=q; b.onclick=()=>quick(q); row.appendChild(b); });
+  msgs.appendChild(row); msgs.scrollTop=msgs.scrollHeight;
+}
+
+function fmt(raw){
+  const fuMatch=raw.match(/FOLLOWUPS:\s*(.+)/i);
+  let text=raw.replace(/FOLLOWUPS:.*/i,'').trim();
+  text=text
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g,'<em>$1</em>')
+    .replace(/^#{1,3} (.+)/gm,'<strong>$1</strong>')
+    .replace(/^[-•] (.+)/gm,'<li>$1</li>')
+    .replace(/(<li>[\s\S]*<\/li>)/,'<ul>$1</ul>')
+    .replace(/\n\n/g,'<br><br>')
+    .replace(/\n/g,'<br>');
+  text+=' <span class="src-tag">↗ honors.utsa.edu</span>';
+  const fus=fuMatch?fuMatch[1].split('|').map(s=>s.trim()).filter(Boolean):[];
+  return {html:text,fus};
+}
+
+async function send(){
+  const inp=document.getElementById('inp');
+  const text=inp.value.trim();
+  if(!text||busy) return;
+  inp.value=''; inp.style.height='auto';
+  busy=true; document.getElementById('go').disabled=true;
+  addMsg('user',text.replace(/</g,'&lt;'));
+  history.push({role:'user',content:text});
+  showTyping();
+  try{
+    const res=await fetch('/api/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:history})
+    });
+    removeTyping();
+    if(!res.ok) throw new Error('Server error '+res.status);
+    const reader=res.body.getReader(), decoder=new TextDecoder();
+    let full='';
+    const bub=addMsg('bot','');
+    while(true){
+      const{done,value}=await reader.read(); if(done)break;
+      const lines=decoder.decode(value,{stream:true}).split('\n').filter(l=>l.startsWith('data: '));
+      for(const line of lines){
+        const d=line.slice(6).trim(); if(d==='[DONE]')break;
+        try{ const j=JSON.parse(d); full+=j.choices?.[0]?.delta?.content||''; const{html}=fmt(full+'▌'); bub.innerHTML=html; msgs.scrollTop=msgs.scrollHeight; }catch{}
+      }
+    }
+    const{html,fus}=fmt(full);
+    bub.innerHTML=html;
+    history.push({role:'assistant',content:full});
+    if(fus.length) addFollowups(fus);
+  }catch(err){
+    removeTyping();
+    addMsg('bot','Something went wrong. Please try again in a moment. <span class="src-tag">↗ honors.utsa.edu</span>');
+  }
+  busy=false; document.getElementById('go').disabled=false; msgs.scrollTop=msgs.scrollHeight;
+}
+</script>
+</body>
+</html>
