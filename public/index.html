@@ -7,6 +7,13 @@
 <meta name="description" content="The 24/7 AI navigator for UTSA Honors College students. Instant answers on ELA, thesis, scholarships, and more.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="The Honors Oracle — UTSA Honors College">
+<meta property="og:description" content="The 24/7 AI navigator for Honors students. Instant answers on ELA, thesis, scholarships, and research opportunities. Built for UTSA, designed for every Honors College in America.">
+<meta property="og:url" content="https://utsa-student-oracle.vercel.app/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Honors Oracle — UTSA Honors College">
+<meta name="twitter:description" content="The 24/7 AI navigator for Honors students. Instant answers on ELA, thesis, scholarships, and research opportunities.">
 <style>
 :root {
   --navy:   #0C2340;
@@ -320,6 +327,18 @@ footer span { color:var(--gold); }
 .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
+/* ===== TEAM AVATAR ===== */
+.team-avatar {
+  width:68px; height:68px; border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--navy);
+  display:flex; align-items:center; justify-content:center;
+  font-size:23px; font-weight:700; font-family:'Georgia',serif;
+  margin:0 auto 16px;
+  box-shadow:0 6px 20px rgba(240,171,0,0.25);
+  letter-spacing:0.5px;
+}
+
 /* ===== FLOATING NAV ===== */
 .float-nav {
   position:fixed;
@@ -618,6 +637,110 @@ footer span { color:var(--gold); }
     </section>
   </div>
 
+  <!-- ===== VISION ===== -->
+  <section id="vision">
+    <div class="section-label reveal">The Bigger Play</div>
+    <h2 class="section-title reveal">Built for UTSA. <span style="color:var(--gold)">Designed for every Honors College.</span></h2>
+    <p class="section-sub reveal">UTSA Honors is one of 330+ Honors programs across the US — together serving over 200,000 students who all face the same hidden-curriculum equity problem. We're solving it here first, then everywhere.</p>
+    <div class="problem-grid">
+
+      <div class="problem-card reveal">
+        <span class="p-icon">📍</span>
+        <div class="p-title">v1 · Live now</div>
+        <p class="p-text">The Oracle is in production for UTSA Honors today. Every section on this page is a working feature — the chat is real, the streaming is real, the knowledge base is grounded in Honors College policy. This isn't a mockup.</p>
+      </div>
+
+      <div class="problem-card reveal">
+        <span class="p-icon">📈</span>
+        <div class="p-title">v2 · Summer 2026</div>
+        <p class="p-text">Personalized student profiles — major, year, GPA, goals — feed tailored answers. iOS and Android wrappers. Deadline reminders piped directly into student calendars so the Monday Message stops being the only signal.</p>
+      </div>
+
+      <div class="problem-card reveal">
+        <span class="p-icon">🌐</span>
+        <div class="p-title">v3 · Fall 2026</div>
+        <p class="p-text">Pilot deployments at 2–3 partner Honors colleges. Each gets a configured knowledge base mirroring their policies. Advisor offices get per-school analytics — which questions students keep asking, where the policy gaps live.</p>
+      </div>
+
+      <div class="problem-card reveal">
+        <span class="p-icon">🏛️</span>
+        <div class="p-title">v4 · 2027</div>
+        <p class="p-text">Licensed platform any university Honors college can deploy. Annual contract per institution, advisor dashboard, portal SSO. Equity infrastructure for the 200,000+ Honors students nationwide, with one tool built by students for students.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== TEAM ===== -->
+  <div style="background:rgba(255,255,255,0.025);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <section id="team">
+      <div class="section-label reveal">Founding Team</div>
+      <h2 class="section-title reveal">The team <span style="color:var(--gold)">building it.</span></h2>
+      <p class="section-sub reveal">Four UTSA Honors CS undergrads who got tired of watching classmates miss scholarship deadlines and built the thing nobody else was building.</p>
+      <div class="problem-grid">
+
+        <div class="problem-card reveal" style="text-align:center;">
+          <div class="team-avatar">AB</div>
+          <div class="p-title" style="text-align:center;">Anudeep Bonagiri</div>
+          <p class="p-text" style="text-align:center;"><span style="color:var(--gold);font-weight:700;">Founder · Product & Engineering</span><br>Sophomore · CS · UTSA Honors. Built the Oracle end-to-end. Also founded Cruze (swarm-AI traffic SaaS).</p>
+        </div>
+
+        <div class="problem-card reveal" style="text-align:center;">
+          <div class="team-avatar">RG</div>
+          <div class="p-title" style="text-align:center;">Ryan G.</div>
+          <p class="p-text" style="text-align:center;"><span style="color:var(--gold);font-weight:700;">Founding Engineer</span><br>Sophomore · CS · UTSA Honors. Backend systems, infra, and knowledge-base pipelines.</p>
+        </div>
+
+        <div class="problem-card reveal" style="text-align:center;">
+          <div class="team-avatar">M</div>
+          <div class="p-title" style="text-align:center;">Mathuram</div>
+          <p class="p-text" style="text-align:center;"><span style="color:var(--gold);font-weight:700;">Founding Research</span><br>Freshman · CS · UTSA Honors. Knowledge curation, scholarship taxonomy, content accuracy.</p>
+        </div>
+
+        <div class="problem-card reveal" style="text-align:center;">
+          <div class="team-avatar">SS</div>
+          <div class="p-title" style="text-align:center;">Shrithik Senthilkumar</div>
+          <p class="p-text" style="text-align:center;"><span style="color:var(--gold);font-weight:700;">Founding Design & Engineering</span><br>Freshman · CS · UTSA Honors. UI, UX, and the frontend systems students actually touch.</p>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== BACK THIS ===== -->
+  <section id="back">
+    <div class="section-label reveal">Back This Work</div>
+    <h2 class="section-title reveal">Help us build the <span style="color:var(--gold)">equity infrastructure</span> for Honors education.</h2>
+    <p class="section-sub reveal">We're undergrads bootstrapping a real product that solves a real problem for real students. Here is what backing this looks like at every level.</p>
+
+    <div class="problem-grid" style="margin-bottom:36px;">
+
+      <div class="problem-card reveal">
+        <span class="p-icon">💵</span>
+        <div class="p-title">Pre-seed sponsorship · $5K–$50K</div>
+        <p class="p-text">Covers compute, content curation, dedicated UTSA Honors knowledge-base maintenance, and our first pilot expansion in Fall 2026. Sponsors get named recognition in-product and quarterly written updates direct from the founding team.</p>
+      </div>
+
+      <div class="problem-card reveal">
+        <span class="p-icon">🏛️</span>
+        <div class="p-title">UTSA stakeholders</div>
+        <p class="p-text">Honors College leadership, alumni relations, donor offices — this is a ready-made win for student outcomes and equity reporting. We'd like to talk about how to fund full-fidelity deployment to every UTSA Honors student.</p>
+      </div>
+
+      <div class="problem-card reveal">
+        <span class="p-icon">🤝</span>
+        <div class="p-title">Other Honors colleges</div>
+        <p class="p-text">Run an Honors program elsewhere? If the hidden-curriculum problem sounds familiar, we want to pilot with you in Fall 2026. Three slots. Configured for your policies, deployed before September.</p>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:8px;">
+      <a href="mailto:anudeep.bonagiri@gmail.com?subject=The%20Honors%20Oracle%20%E2%80%94%20Backing%20This" class="btn-primary" style="display:inline-block;text-decoration:none;font-size:16px;padding:17px 40px;">Reach out → anudeep.bonagiri@gmail.com</a>
+      <p style="margin-top:14px;font-size:12px;color:var(--dim2);font-family:sans-serif;letter-spacing:0.5px;">Or just open the Oracle below and see what we built.</p>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <div class="cta-section">
     <div class="section-label reveal">Ready when you are</div>
@@ -683,17 +806,14 @@ footer span { color:var(--gold); }
 
 <!-- ===== FLOATING SECTION NAV ===== -->
 <nav class="float-nav" id="floatNav" aria-label="Page sections">
-  <button class="fnav-btn" data-section="how" type="button">
-    <span class="fnav-long">How It Works</span><span class="fnav-short">How</span>
-  </button>
   <button class="fnav-btn" data-section="research" type="button">Research</button>
   <button class="fnav-btn" data-section="scholarships" type="button">
     <span class="fnav-long">Scholarships</span><span class="fnav-short">Schol.</span>
   </button>
-  <button class="fnav-btn" data-section="why" type="button">
-    <span class="fnav-long">Why It Matters</span><span class="fnav-short">Why</span>
-  </button>
-  <button class="fnav-btn cta" id="fnavAsk" type="button" aria-label="Open the Honors Oracle chat">Ask Oracle</button>
+  <button class="fnav-btn" data-section="vision" type="button">Vision</button>
+  <button class="fnav-btn" data-section="team" type="button">Team</button>
+  <button class="fnav-btn cta" id="fnavBack" type="button" aria-label="Email Anudeep about backing this work">Back This</button>
+  <button class="fnav-btn cta" id="fnavAsk" type="button" aria-label="Open the Honors Oracle chat">🦉 Ask Oracle</button>
 </nav>
 
 
@@ -758,6 +878,11 @@ function closeChat(){
   });
   const askBtn=document.getElementById('fnavAsk');
   if(askBtn) askBtn.addEventListener('click', openChat);
+  const backBtn=document.getElementById('fnavBack');
+  if(backBtn) backBtn.addEventListener('click', ()=>{
+    const el=document.getElementById('back');
+    if(el) el.scrollIntoView({behavior:reduced?'auto':'smooth', block:'start'});
+  });
 
   // Show after the hero has scrolled past
   let ticking=false;
@@ -774,7 +899,7 @@ function closeChat(){
   onScroll();
 
   // Active section highlighting
-  const ids=['how','research','scholarships','why'];
+  const ids=['research','scholarships','vision','team','back'];
   const sections=ids.map(id=>document.getElementById(id)).filter(Boolean);
   const setActive=(id)=>{
     buttons.forEach(b=>{
