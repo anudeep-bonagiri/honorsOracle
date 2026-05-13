@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholarships — Honors Oracle</title>
+<meta name="description" content="UTSA Honors scholarship playbook — Goldwater, Fulbright, NSF GRFP, Truman, Udall and more. Filter by year and field.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="page">
+
+  <!-- NAV -->
+  <nav aria-label="Primary">
+    <a class="nav-brand" href="/" style="display:flex;align-items:center;gap:8px;"><span class="nav-logo">🦉</span><span>Honors Oracle</span></a>
+    <div class="nav-anchors" role="navigation" aria-label="Site sections">
+      <a class="nav-anchor" href="/research">Research</a>
+      <a class="nav-anchor active" href="/scholarships" aria-current="page">Scholarships</a>
+      <a class="nav-anchor" href="/#playbook">Playbook</a>
+    </div>
+    <span class="nav-badge">UTSA Honors</span>
+    <button class="nav-cta" onclick="openChat()">Launch Oracle</button>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="section-label">Scholarships</div>
+    <h1>The Scholarship <span>Playbook</span></h1>
+    <p>What review committees actually look for, the deadlines that matter, and the moves that separate winners from also-rans. Filter by year and field to narrow down which ones fit you right now.</p>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar reveal" style="max-width:1100px;">
+    <span class="fb-label">Filter</span>
+    <div class="fb-group">
+      <span>Year</span>
+      <select id="yearFilter" class="fb-select">
+        <option value="">Any year</option>
+        <option value="freshman">Freshman</option>
+        <option value="soph">Sophomore</option>
+        <option value="junior">Junior</option>
+        <option value="senior">Senior / Grad</option>
+      </select>
+    </div>
+    <div class="fb-group">
+      <span>Field</span>
+      <select id="fieldFilter" class="fb-select">
+        <option value="">Any field</option>
+        <option value="stem">STEM (Bio, Chem, CS, Eng, Math, Physics)</option>
+        <option value="health">Health / Pre-Med</option>
+        <option value="social">Social Sciences / Policy</option>
+        <option value="humanities">Humanities / Arts / Languages</option>
+        <option value="business">Business</option>
+      </select>
+    </div>
+    <button class="fb-reset" type="button" onclick="resetFilters()">Reset</button>
+    <span class="fb-count" id="schol-count"></span>
+  </div>
+  <div class="fb-note" id="schol-note"></div>
+
+  <!-- SCHOLARSHIP GRID -->
+  <section>
+    <div class="problem-grid" id="schol-grid">
+
+      <div class="problem-card reveal scholarship-card" data-years="soph,junior" data-fields="stem,health"
+        onclick="quick('Tell me everything about the Goldwater Scholarship — eligibility, what reviewers look for, and how to win it.')">
+        <i class="p-icon" data-lucide="microscope"></i>
+        <div class="p-title">Goldwater Scholarship</div>
+        <p class="p-text"><strong>For:</strong> STEM sophs/juniors targeting a research PhD. <strong>Award:</strong> $7,500/yr up to 2 yrs. <strong>Deadline:</strong> campus late Jan. <strong>Reviewers want:</strong> a 3-page research essay that reads like a junior PI's Specific Aims, plus real lab experience. <strong>Tip:</strong> start research freshman year — second-semester sophomores rarely have enough runway.</p>
+      </div>
+
+      <div class="problem-card reveal scholarship-card" data-years="senior" data-fields="any"
+        onclick="quick('Walk me through applying for the Fulbright U.S. Student Program as a UTSA senior.')">
+        <i class="p-icon" data-lucide="globe"></i>
+        <div class="p-title">Fulbright U.S. Student</div>
+        <p class="p-text"><strong>For:</strong> graduating seniors and recent alumni. One year of study, research, or English teaching abroad. <strong>Deadline:</strong> campus early Sep, national mid-Oct. <strong>Reviewers want:</strong> defensible country fit, language readiness, project that is feasible in one year, cultural-ambassadorship evidence. <strong>Tip:</strong> contact host institutions in May — winners know their hosts before submitting.</p>
+      </div>
+
+      <div class="problem-card reveal scholarship-card" data-years="senior" data-fields="stem,health"
+        onclick="quick('How does the NSF Graduate Research Fellowship Program work and how should I prepare an application?')">
+        <i class="p-icon" data-lucide="book-open"></i>
+        <div class="p-title">NSF GRFP</div>
+        <p class="p-text"><strong>For:</strong> seniors entering STEM PhDs and 1st/2nd-year grads. <strong>Award:</strong> $37K/yr stipend + $16K tuition for 3 yrs. <strong>Deadline:</strong> mid-Oct. <strong>Reviewers want:</strong> Intellectual Merit AND Broader Impacts weighted equally. <strong>Tip:</strong> broader-impacts is where most STEM applicants fumble. List named, completed outreach. "I plan to mentor…" loses to "I taught Saturday Coding Club at Brackenridge."</p>
+      </div>
+
+      <div class="problem-card reveal scholarship-card" data-years="junior" data-fields="social,business"
+        onclick="quick('What does the Truman Scholarship look for and how do I position myself for it as a junior?')">
+        <i class="p-icon" data-lucide="landmark"></i>
+        <div class="p-title">Truman Scholarship</div>
+        <p class="p-text"><strong>For:</strong> juniors committed to public-service careers (gov, nonprofit, advocacy). <strong>Award:</strong> up to $30K for grad school. <strong>Deadline:</strong> campus early Jan; UTSA nominates one student. <strong>Reviewers want:</strong> sustained, named, measurable work on ONE policy issue across years. <strong>Tip:</strong> Truman doesn't reward generalists. Pick a lane, own it visibly, build a multi-year record.</p>
+      </div>
+
+      <div class="problem-card reveal scholarship-card" data-years="soph,junior" data-fields="stem,social,health"
+        onclick="quick('What is the Udall Scholarship and who should apply?')">
+        <i class="p-icon" data-lucide="tree-pine"></i>
+        <div class="p-title">Udall Scholarship</div>
+        <p class="p-text"><strong>For:</strong> sophs/juniors on three tracks — environment, Native American health policy, or tribal public policy. <strong>Award:</strong> up to $7,000. <strong>Deadline:</strong> early Mar. <strong>Reviewers want:</strong> deep, demonstrated commitment to one track, not all three. <strong>Tip:</strong> the environment track is most competitive; the policy tracks have higher acceptance rates with strong applications.</p>
+      </div>
+
+      <div class="problem-card reveal scholarship-card" data-years="any" data-fields="any"
+        onclick="quick('How do Gilman, Boren, and CLS compare for funding international study and language work?')">
+        <i class="p-icon" data-lucide="plane"></i>
+        <div class="p-title">Gilman · Boren · CLS</div>
+        <p class="p-text"><strong>Gilman:</strong> Pell recipients abroad, up to $5K ($8K for critical-need languages), two cycles per year. <strong>Boren:</strong> up to $25K for critical-language study abroad with federal-service commitment after. <strong>CLS:</strong> fully-funded summer language program, deadline mid-Nov. <strong>Tip:</strong> all three reward applicants who clearly explain why this specific language matters for their career.</p>
+      </div>
+
+      <div class="problem-card reveal scholarship-card" data-years="senior" data-fields="any"
+        onclick="quick('What are the Rhodes, Marshall, and Mitchell scholarships, and is it realistic for me to apply?')">
+        <i class="p-icon" data-lucide="graduation-cap"></i>
+        <div class="p-title">Rhodes · Marshall · Mitchell</div>
+        <p class="p-text"><strong>For:</strong> graduating seniors → UK/Ireland grad study. <strong>Award:</strong> 2 yrs+ fully funded. <strong>Deadlines:</strong> October. <strong>Reviewers want:</strong> institutional-level intellectual leadership — you ran the thing, founded the thing, fixed the thing. <strong>Tip:</strong> if you can't name 3 distinct leadership accomplishments with measurable impact, this isn't your cycle. Try again next year with a stronger record.</p>
+      </div>
+
+      <div class="problem-card reveal scholarship-card" data-years="any" data-fields="any"
+        onclick="quick('What UTSA Honors-specific scholarships and awards exist, and how do I actually find them?')">
+        <i class="p-icon" data-lucide="star"></i>
+        <div class="p-title">UTSA Honors-Specific Awards</div>
+        <p class="p-text">Internal Honors awards — study-abroad supplements, research grants, named scholarships — are announced through the <strong>Monday Message</strong> and posted in the <strong>Honors portal</strong>. Eligibility usually requires Honors standing plus a minimum GPA. <strong>Tip:</strong> the pool is small. Students who win these read the Monday Message every week. Showing up matters more than at the national level.</p>
+      </div>
+
+    </div>
+
+    <!-- Meta card — always visible -->
+    <div class="problem-card reveal" style="border-color:rgba(240,171,0,0.45);background:rgba(240,171,0,0.06);margin-top:24px;">
+      <i class="p-icon" data-lucide="target"></i>
+      <div class="p-title">A few things reviewers tend to care about</div>
+      <p class="p-text" style="line-height:1.9;">
+        Specific research questions read better than broad interest areas. "Climate policy" is vague. "How ERCOT models winter-storm load forecasts after Uri" is something a reviewer can imagine you actually working on.<br><br>
+        Every essay quietly answers four questions: why this topic, why you specifically, why now, and why this program. If your draft skips one, the reviewer notices.<br><br>
+        Broader impacts is not filler. Concrete things you have already done (a workshop you ran, a class you TA'd, students you mentored) beat anything starting with "I plan to."<br><br>
+        The single best thing you can do six weeks out is have someone who already won the same scholarship read your essay. Almost nobody does this.<br><br>
+        Recommenders need a one-page brief: the prompt, the deadline, what you want them to mention. Send it six weeks out. They will quietly resent two-week notice.<br><br>
+        The campus deadline is usually four to eight weeks before the national one, and is where most people lose. Plan backwards from the national date, then keep going.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="section-label reveal">Need specifics?</div>
+    <h2 class="reveal">Ask the Oracle for the<br><span>scholarship you're eyeing.</span></h2>
+    <p class="reveal">"What does a winning Goldwater research essay actually look like?" works. So does "Am I too late to start Truman prep as a junior?"</p>
+    <button class="btn-primary reveal" onclick="openChat()" style="font-size:16px;padding:17px 40px;">Open the chat</button>
+  </div>
+
+  <footer>
+    <p>Honors Oracle. A side project by <span>Anudeep Bonagiri</span>, UTSA Honors CS.</p>
+    <p style="margin-top:8px;opacity:0.6;">Not affiliated with UTSA. Always double-check critical deadlines at <a href="https://honors.utsa.edu" target="_blank" rel="noopener">honors.utsa.edu</a> before you act on anything the chat says.</p>
+  </footer>
+
+</div>
+
+<!-- ===== CHAT VIEW ===== -->
+<div id="chat-view">
+  <div class="chat-header">
+    <button class="chat-back" onclick="closeChat()">← Back</button>
+    <span class="ch-logo">🦉</span>
+    <div class="ch-text">
+      <h2>Honors Oracle</h2>
+      <p>UTSA Honors · Unofficial · Always check the source</p>
+    </div>
+    <span class="live-dot">● Live</span>
+  </div>
+  <div id="messages">
+    <div id="chat-welcome">
+      <div class="cw-owl">🦉</div>
+      <h3>What scholarship are you eyeing?</h3>
+      <p>Ask about eligibility, what reviewers actually want, deadlines, or how to position yourself given the year and field you're in.</p>
+      <div class="quick-chips">
+        <button class="qchip" onclick="quick('Tell me everything about the Goldwater Scholarship — eligibility, what reviewers look for, and how to win it.')"><i class="qchip-i" data-lucide="microscope"></i>Goldwater</button>
+        <button class="qchip" onclick="quick('Walk me through applying for the Fulbright U.S. Student Program as a UTSA senior.')"><i class="qchip-i" data-lucide="globe"></i>Fulbright</button>
+        <button class="qchip" onclick="quick('How does the NSF Graduate Research Fellowship Program work and how should I prepare an application?')"><i class="qchip-i" data-lucide="book-open"></i>NSF GRFP</button>
+        <button class="qchip" onclick="quick('What does the Truman Scholarship look for and how do I position myself for it as a junior?')"><i class="qchip-i" data-lucide="landmark"></i>Truman</button>
+        <button class="qchip" onclick="quick('What scholarships should I be applying for right now as a UTSA Honors student?')"><i class="qchip-i" data-lucide="coins"></i>What fits me</button>
+        <button class="qchip" onclick="quick('What UTSA Honors-specific scholarships and awards exist, and how do I actually find them?')"><i class="qchip-i" data-lucide="star"></i>UTSA-only awards</button>
+      </div>
+    </div>
+  </div>
+  <div id="chat-bottom">
+    <div class="irow">
+      <div class="ibox">
+        <textarea id="inp" rows="1"
+          placeholder="Ask about a specific scholarship, deadline, or essay…"
+          onkeydown="onKey(event)" oninput="resize(this)"></textarea>
+      </div>
+      <button id="go" onclick="send()">➤</button>
+    </div>
+    <div class="foot-note">Unofficial. Verify critical info at honors.utsa.edu.</div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="/app.js"></script>
+<script>
+/* ===== SCHOLARSHIP FILTER ===== */
+(function(){
+  const yearSel  = document.getElementById('yearFilter');
+  const fieldSel = document.getElementById('fieldFilter');
+  const countEl  = document.getElementById('schol-count');
+  const noteEl   = document.getElementById('schol-note');
+  const cards    = Array.from(document.querySelectorAll('.scholarship-card'));
+
+  function tagList(el, key){
+    return (el.dataset[key] || '').split(',').map(s => s.trim()).filter(Boolean);
+  }
+  function matches(card, year, field){
+    const years  = tagList(card, 'years');
+    const fields = tagList(card, 'fields');
+    const yearOk  = !year  || years.includes('any')  || years.includes(year);
+    const fieldOk = !field || fields.includes('any') || fields.includes(field);
+    return { yearOk, fieldOk, both: yearOk && fieldOk };
+  }
+
+  function setVisible(card, show){ card.style.display = show ? '' : 'none'; }
+
+  function update(){
+    const year  = yearSel.value;
+    const field = fieldSel.value;
+
+    // Pass 1 — strict match
+    let visible = 0;
+    cards.forEach(c => {
+      const m = matches(c, year, field);
+      setVisible(c, m.both);
+      if (m.both) visible++;
+    });
+
+    let noteText = '';
+
+    // Fallback 1 — relax the field filter if too narrow
+    if ((year || field) && visible < 3 && field) {
+      cards.forEach(c => {
+        const m = matches(c, year, '');
+        if (m.yearOk && c.style.display === 'none') {
+          setVisible(c, true);
+          visible++;
+        }
+      });
+      noteText = `Few exact matches for ${labelOf(fieldSel)} students — showing all scholarships open to ${labelOf(yearSel) || 'any year'}.`;
+    }
+
+    // Fallback 2 — relax the year filter too if still thin
+    if ((year || field) && visible < 3) {
+      cards.forEach(c => setVisible(c, true));
+      visible = cards.length;
+      noteText = `Few exact matches — showing everything. Try a different year or field to narrow down.`;
+    }
+
+    // Render count + note
+    if (!year && !field) {
+      countEl.innerHTML = `Showing all <strong>${cards.length}</strong> scholarships.`;
+    } else {
+      countEl.innerHTML = `Showing <strong>${visible}</strong> of <strong>${cards.length}</strong>.`;
+    }
+    if (noteText) {
+      noteEl.textContent = noteText;
+      noteEl.classList.add('show');
+    } else {
+      noteEl.classList.remove('show');
+    }
+  }
+
+  function labelOf(sel){
+    if (!sel || !sel.value) return '';
+    const opt = sel.options[sel.selectedIndex];
+    return opt ? opt.textContent : sel.value;
+  }
+
+  window.resetFilters = function(){
+    yearSel.value = '';
+    fieldSel.value = '';
+    update();
+  };
+
+  yearSel.addEventListener('change', update);
+  fieldSel.addEventListener('change', update);
+  update();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — Honors Oracle</title>
+<meta name="description" content="Where UTSA Honors students find research — by discipline. URA grants, NSF REU, NIH SIP, Mellon Mays, PPIA, and how to cold-email a faculty mentor.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="page">
+
+  <!-- NAV -->
+  <nav aria-label="Primary">
+    <a class="nav-brand" href="/" style="display:flex;align-items:center;gap:8px;"><span class="nav-logo">🦉</span><span>Honors Oracle</span></a>
+    <div class="nav-anchors" role="navigation" aria-label="Site sections">
+      <a class="nav-anchor active" href="/research" aria-current="page">Research</a>
+      <a class="nav-anchor" href="/scholarships">Scholarships</a>
+      <a class="nav-anchor" href="/#playbook">Playbook</a>
+    </div>
+    <span class="nav-badge">UTSA Honors</span>
+    <button class="nav-cta" onclick="openChat()">Launch Oracle</button>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="section-label">Research</div>
+    <h1>Find research in <span>your field</span></h1>
+    <p>Where to look at UTSA and externally, broken down by discipline. Click any card to ask the Oracle for tailored advice — including what's a fit for your year and major right now.</p>
+  </div>
+
+  <!-- RESEARCH GRID -->
+  <section>
+    <div class="problem-grid">
+
+      <div class="problem-card reveal" onclick="quick('How do I land a research position at UTSA as a STEM major, and which national REU programs should I target?')">
+        <i class="p-icon" data-lucide="flask-conical"></i>
+        <div class="p-title">STEM · Bio · Chem · CS · Eng · Math · Physics</div>
+        <p class="p-text"><strong>At UTSA:</strong> faculty directory at utsa.edu/research, plus the URA undergraduate-research grants. <strong>National:</strong> NSF REU sites (apply to 6–10; site acceptance ~5–15%), Amgen Scholars, HHMI EXROP, NIH Summer Internship Program, DAAD RISE (Germany). Most summer deadlines hit in February.</p>
+      </div>
+
+      <div class="problem-card reveal" onclick="quick('What research opportunities exist for health-sciences and pre-med undergrads at UTSA and externally?')">
+        <i class="p-icon" data-lucide="dna"></i>
+        <div class="p-title">Health Sciences · Pre-Med · Public Health</div>
+        <p class="p-text"><strong>At UTSA:</strong> NIH-funded MARC and RISE programs for biomedical researchers, plus UT Health San Antonio connections. <strong>National:</strong> NIH SIP, Mayo Clinic SURF, MD Anderson CPRIT Summer Program, Texas HHS internships, AAMC summer programs.</p>
+      </div>
+
+      <div class="problem-card reveal" onclick="quick('How do social science and psychology undergrads find research, and what fellowships exist before grad school?')">
+        <i class="p-icon" data-lucide="brain"></i>
+        <div class="p-title">Social Sciences · Psychology · Economics</div>
+        <p class="p-text"><strong>Move 1:</strong> cold-email three faculty whose papers you actually read. <strong>National:</strong> APA STEP, NSF REU in psychology/sociology, NBER (econ), and predoctoral fellowships at Stanford SIEPR, Harvard/Chicago/MIT labs — paid 2-year positions for graduates heading to a PhD.</p>
+      </div>
+
+      <div class="problem-card reveal" onclick="quick('What research and fellowship opportunities exist for humanities, arts, and languages majors?')">
+        <i class="p-icon" data-lucide="scroll-text"></i>
+        <div class="p-title">Humanities · Arts · Languages</div>
+        <p class="p-text"><strong>At UTSA:</strong> URA grants fund humanities and creative work, not only STEM. <strong>National:</strong> Mellon Mays Undergraduate Fellowship (the high-leverage pre-PhD path for humanities students), Critical Language Scholarship, Beinecke Scholarship (juniors, $34K toward grad school), ACLS dissertation programs in the long run.</p>
+      </div>
+
+      <div class="problem-card reveal" onclick="quick('What policy, business, and public-service research and internship paths should I aim for?')">
+        <i class="p-icon" data-lucide="scale"></i>
+        <div class="p-title">Business · Policy · Public Service</div>
+        <p class="p-text"><strong>National:</strong> PPIA Junior Summer Institute (free summer policy school for rising seniors), Federal Reserve undergrad analyst programs, congressional and Texas Legislature internships, NBER for empirical econ, McNair Scholars for first-gen and underrepresented students aiming at a PhD.</p>
+      </div>
+
+      <div class="problem-card reveal" onclick="quick('How do I cold-email a faculty member at UTSA to ask about joining their lab? Give me a template I can adapt.')">
+        <i class="p-icon" data-lucide="send"></i>
+        <div class="p-title">Cold-Email a UTSA Faculty Mentor</div>
+        <p class="p-text">Read one of their recent papers. Reference a specific claim from it in your email. Say what you bring — a class, a tool, a specific question. Ask for a 15-minute conversation, not a lab spot. Send Tue–Thu, 8–10am. Most students never email anyone; sending three this week puts you ahead of your cohort.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="section-label reveal">Make it personal</div>
+    <h2 class="reveal">Tell the Oracle your<br><span>major and year.</span></h2>
+    <p class="reveal">"I'm a sophomore CS major at UTSA Honors — what REU should I apply to this winter?" works better than browsing lists.</p>
+    <button class="btn-primary reveal" onclick="openChat()" style="font-size:16px;padding:17px 40px;">Open the chat</button>
+  </div>
+
+  <footer>
+    <p>Honors Oracle. A side project by <span>Anudeep Bonagiri</span>, UTSA Honors CS.</p>
+    <p style="margin-top:8px;opacity:0.6;">Not affiliated with UTSA. Always double-check critical deadlines at <a href="https://honors.utsa.edu" target="_blank" rel="noopener">honors.utsa.edu</a> before you act on anything the chat says.</p>
+  </footer>
+
+</div>
+
+<!-- ===== CHAT VIEW ===== -->
+<div id="chat-view">
+  <div class="chat-header">
+    <button class="chat-back" onclick="closeChat()">← Back</button>
+    <span class="ch-logo">🦉</span>
+    <div class="ch-text">
+      <h2>Honors Oracle</h2>
+      <p>UTSA Honors · Unofficial · Always check the source</p>
+    </div>
+    <span class="live-dot">● Live</span>
+  </div>
+  <div id="messages">
+    <div id="chat-welcome">
+      <div class="cw-owl">🦉</div>
+      <h3>What kind of research?</h3>
+      <p>Tell the Oracle your year and major and it'll narrow down where to apply. Click a chip below or type your own.</p>
+      <div class="quick-chips">
+        <button class="qchip" onclick="quick('How do I land a research position at UTSA as a STEM major, and which national REU programs should I target?')"><i class="qchip-i" data-lucide="flask-conical"></i>STEM research</button>
+        <button class="qchip" onclick="quick('What research opportunities exist for health-sciences and pre-med undergrads at UTSA and externally?')"><i class="qchip-i" data-lucide="dna"></i>Pre-Med research</button>
+        <button class="qchip" onclick="quick('How do social science and psychology undergrads find research, and what fellowships exist before grad school?')"><i class="qchip-i" data-lucide="brain"></i>Social Sciences</button>
+        <button class="qchip" onclick="quick('What research and fellowship opportunities exist for humanities, arts, and languages majors?')"><i class="qchip-i" data-lucide="scroll-text"></i>Humanities</button>
+        <button class="qchip" onclick="quick('What policy, business, and public-service research and internship paths should I aim for?')"><i class="qchip-i" data-lucide="scale"></i>Policy / Business</button>
+        <button class="qchip" onclick="quick('How do I cold-email a faculty member at UTSA to ask about joining their lab? Give me a template I can adapt.')"><i class="qchip-i" data-lucide="send"></i>Cold-email template</button>
+      </div>
+    </div>
+  </div>
+  <div id="chat-bottom">
+    <div class="irow">
+      <div class="ibox">
+        <textarea id="inp" rows="1"
+          placeholder="Ask about REUs, labs, summer programs, or how to cold-email faculty…"
+          onkeydown="onKey(event)" oninput="resize(this)"></textarea>
+      </div>
+      <button id="go" onclick="send()">➤</button>
+    </div>
+    <div class="foot-note">Unofficial. Verify critical info at honors.utsa.edu.</div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="/app.js"></script>
+</body>
+</html>

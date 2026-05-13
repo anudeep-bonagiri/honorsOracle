@@ -1,4 +1,8 @@
 {
   "version": 2,
-  "outputDirectory": "public"
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "trailingSlash": false
 }
+</content>
+</invoke>
